@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,9 +25,13 @@ public class Personagem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
         Jump();
         DetectarChao();
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
     }
 
     void Move()
@@ -49,7 +54,7 @@ public class Personagem : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") && taNoChao == true)
+        if (Input.GetButtonDown("Jump") && taNoChao)
         {
             rig.AddForce(new Vector2(0f, forcaPulo), ForceMode2D.Impulse);
         }
@@ -58,8 +63,16 @@ public class Personagem : MonoBehaviour
     void DetectarChao()
     {
         taNoChao = Physics2D.OverlapCircle(detectaChao.position, 0.2f, oQueEChao);
+        
+        /*
+        //  Collider2D chaoCollider = Physics2D.OverlapCircle(detectaChao.position, 0.2f, oQueEChao);
+
+        RaycastHit2D chaoHit = Physics2D.CircleCast(detectaChao.position, 0.2f, Vector2.zero, 0, oQueEChao);
+        taNoChao = Mathf.Abs(chaoHit.point.x - transform.position.x) <= 0.1f;*/
     }
 
-    
-    
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(detectaChao.position,0.2f);
+    }
 }
