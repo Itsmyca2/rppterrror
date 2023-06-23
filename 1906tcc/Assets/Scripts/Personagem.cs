@@ -14,8 +14,8 @@ public class Personagem : MonoBehaviour
     private SpriteRenderer sprite;
     private Animator playerAnim;
 
-    
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,15 +62,20 @@ public class Personagem : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") && taNoChao)
+        if (Input.GetButtonDown("Jump") && taNoChao == true)
         {
+            playerAnim.SetBool("Jump", true);
             rig.AddForce(new Vector2(0f, forcaPulo), ForceMode2D.Impulse);
+
         }
+        taNoChao = true;
     }
 
     void DetectarChao()
     {
+        //playerAnim.SetBool("Jump", false);
         taNoChao = Physics2D.OverlapCircle(detectaChao.position, 0.2f, oQueEChao);
+        
         
         /*
         //  Collider2D chaoCollider = Physics2D.OverlapCircle(detectaChao.position, 0.2f, oQueEChao);
@@ -82,5 +87,13 @@ public class Personagem : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(detectaChao.position,0.2f);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Tilemap")
+        {
+            playerAnim.SetBool("Jump", false);
+        }
     }
 }
