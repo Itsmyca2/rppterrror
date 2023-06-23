@@ -12,12 +12,14 @@ public class Personagem : MonoBehaviour
     public Transform detectaChao;
     public LayerMask oQueEChao;
     private SpriteRenderer sprite;
+    private Animator playerAnim;
 
     
     
     // Start is called before the first frame update
     void Start()
     {
+        playerAnim = GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
     }
@@ -42,12 +44,18 @@ public class Personagem : MonoBehaviour
         
         if (horizontalMovimento > 0)
         {
+            playerAnim.SetBool("Walk", true );
             sprite.flipX = false;
         }
 
         else if (horizontalMovimento < 0)
         {
+            playerAnim.SetBool("Walk", true );
             sprite.flipX = true;
+        }
+        else
+        {
+            playerAnim.SetBool("Walk", false);
         }
 
     }
