@@ -29,6 +29,7 @@ public class Personagem : MonoBehaviour
     {
         Jump();
         DetectarChao();
+        Attack();
     }
 
     private void FixedUpdate()
@@ -45,12 +46,14 @@ public class Personagem : MonoBehaviour
         if (horizontalMovimento > 0)
         {
             playerAnim.SetBool("Walk", true );
+           //playerAnim.SetBool("Attack", false);
             sprite.flipX = false;
         }
 
         else if (horizontalMovimento < 0)
         {
             playerAnim.SetBool("Walk", true );
+           //playerAnim.SetBool("Attack", false);
             sprite.flipX = true;
         }
         else
@@ -65,6 +68,7 @@ public class Personagem : MonoBehaviour
         if (Input.GetButtonDown("Jump") && taNoChao == true)
         {
             playerAnim.SetBool("Jump", true);
+            playerAnim.SetBool("Attack", false);
             rig.AddForce(new Vector2(0f, forcaPulo), ForceMode2D.Impulse);
 
         }
@@ -76,12 +80,6 @@ public class Personagem : MonoBehaviour
         //playerAnim.SetBool("Jump", false);
         taNoChao = Physics2D.OverlapCircle(detectaChao.position, 0.2f, oQueEChao);
         
-        
-        /*
-        //  Collider2D chaoCollider = Physics2D.OverlapCircle(detectaChao.position, 0.2f, oQueEChao);
-
-        RaycastHit2D chaoHit = Physics2D.CircleCast(detectaChao.position, 0.2f, Vector2.zero, 0, oQueEChao);
-        taNoChao = Mathf.Abs(chaoHit.point.x - transform.position.x) <= 0.1f;*/
     }
 
     private void OnDrawGizmos()
@@ -95,5 +93,20 @@ public class Personagem : MonoBehaviour
         {
             playerAnim.SetBool("Jump", false);
         }
+    }
+
+    private void Attack()
+    {
+        if (Input.GetButtonDown("Fire3"))
+        {
+            playerAnim.SetBool("Attack", true);
+        }
+
+        if (Input.GetButtonUp("Fire3"))
+        {
+            playerAnim.SetBool("Attack", false);
+        }
+        
+        
     }
 }
