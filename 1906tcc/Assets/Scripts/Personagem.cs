@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Personagem : MonoBehaviour
 {
+    //private GameObject lugarataque = GameObject.FindWithTag("lugarataque");
+    
     public int velocidade;
     public float forcaPulo;
     private Rigidbody2D rig;
@@ -14,6 +16,16 @@ public class Personagem : MonoBehaviour
     private SpriteRenderer sprite;
     private Animator playerAnim;
 
+    [Header("Lugar do Ataque")] 
+    public Transform attackCheck;
+
+    public float raioAtaque;
+    public LayerMask layerEnemy;
+    float tempoProximoAtaque;
+    private float tempoAtaque;
+
+
+    private float attackCheckX;
 
 
     // Start is called before the first frame update
@@ -22,6 +34,7 @@ public class Personagem : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        attackCheckX = attackCheck.localPosition.x;
     }
 
     // Update is called once per frame
@@ -41,6 +54,7 @@ public class Personagem : MonoBehaviour
     {
         float horizontalMovimento = Input.GetAxisRaw("Horizontal");
         rig.velocity = new Vector2(horizontalMovimento * velocidade, rig.velocity.y);
+       
         
         
         if (horizontalMovimento > 0)
@@ -48,6 +62,7 @@ public class Personagem : MonoBehaviour
             playerAnim.SetBool("Walk", true );
            //playerAnim.SetBool("Attack", false);
             sprite.flipX = false;
+             attackCheck.localPosition = new Vector2 (attackCheckX, attackCheck.localPosition.y);
         }
 
         else if (horizontalMovimento < 0)
@@ -55,6 +70,7 @@ public class Personagem : MonoBehaviour
             playerAnim.SetBool("Walk", true );
            //playerAnim.SetBool("Attack", false);
             sprite.flipX = true;
+            attackCheck.localPosition = new Vector2 (-attackCheckX, attackCheck.localPosition.y);
         }
         else
         {
@@ -85,6 +101,7 @@ public class Personagem : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(detectaChao.position,0.2f);
+        Gizmos.DrawSphere(attackCheck.position, raioAtaque);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -97,16 +114,35 @@ public class Personagem : MonoBehaviour
 
     private void Attack()
     {
-        if (Input.GetButtonDown("Fire3"))
+        if (Input.GetButtonDown("Fire1"))
         {
             playerAnim.SetBool("Attack", true);
         }
 
-        if (Input.GetButtonUp("Fire3"))
+        if (Input.GetButtonUp("Fire1"))
         {
             playerAnim.SetBool("Attack", false);
         }
-        
-        
+
+        /*if (tempoAtaque <= 0)
+        {
+            if (Input.GetButtonDown("Fire1") && velocidade == new Vector2(0, 0))
+            {
+                
+            }
+        }
+
+        Collider2D[] enemiesAttack = Physics2D.OverlapCircleAll(attackCheck.position, raioAtaque, layerEnemy);
+        for (int i = 0; i < enemiesAttack.Length; i++)
+        {
+            //enemiesAttack [1].SendMessage ("Inimigo");
+            Debug.Log (enemiesAttack [1].name);
+        }
+        */
+        {
+            
+        }
+
+
     }
 }
