@@ -114,35 +114,37 @@ public class Personagem : MonoBehaviour
 
     private void Attack()
     {
-        if (Input.GetButtonDown("Fire1"))
+        tempoAtaque -= Time.deltaTime;
+        
+       if (tempoAtaque <= 0)
         {
-            playerAnim.SetBool("Attack", true);
-        }
-
-        if (Input.GetButtonUp("Fire1"))
-        {
-            playerAnim.SetBool("Attack", false);
-        }
-
-        /*if (tempoAtaque <= 0)
-        {
-            if (Input.GetButtonDown("Fire1") && velocidade == new Vector2(0, 0))
+            if (Input.GetButtonDown("Fire1"))
+            {
+                playerAnim.SetTrigger("Attack");
+                tempoAtaque = 0.2f;
+                PlayerAttack();
+            }
+            else
             {
                 
             }
         }
-
-        Collider2D[] enemiesAttack = Physics2D.OverlapCircleAll(attackCheck.position, raioAtaque, layerEnemy);
-        for (int i = 0; i < enemiesAttack.Length; i++)
-        {
-            //enemiesAttack [1].SendMessage ("Inimigo");
-            Debug.Log (enemiesAttack [1].name);
-        }
-        */
+        
+        
         {
             
         }
 
 
+    }
+
+    void PlayerAttack()
+    {
+        Collider2D[] enemiesAttack = Physics2D.OverlapCircleAll(attackCheck.position, raioAtaque, layerEnemy);
+        for (int i = 0; i < enemiesAttack.Length; i++)
+        {
+            enemiesAttack [i].SendMessage ("Inimigo");
+            Debug.Log (enemiesAttack [i].name);
+        }
     }
 }

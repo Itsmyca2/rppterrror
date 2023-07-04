@@ -83,11 +83,11 @@ public class InimigoUm : MonoBehaviour
 
     private void ProcurarJogador()
     {
-        Debug.Log("Procurando");
+        //Debug.Log("Procurando");
        Collider2D colisor = Physics2D.OverlapCircle(this.transform.position, this.raioVisao, playerLayer );
        if (colisor != null)
        {
-           Debug.Log("Achei");
+           //Debug.Log("Achei");
            this.alvo = colisor.transform;
        }
        else
