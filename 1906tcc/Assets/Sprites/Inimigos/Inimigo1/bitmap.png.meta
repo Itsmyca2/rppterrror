@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4997e02ce18fe1748aa7fbbbbe74cf97
+guid: 2bf70cc504c95d64aa1d0e41c36f172c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -128,22 +128,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: inimigo_0
+      name: bitmap_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 18
-        width: 987
-        height: 904
-      alignment: 0
+        x: 67
+        y: 187
+        width: 655
+        height: 80
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e82f7b7dbf33ba498fd2714b6128c1a
-      internalID: -24188799
+      spriteID: e9e0160811281a34c91eacada95c41ee
+      internalID: -860512303
       vertices: []
       indices: 
       edges: []
@@ -159,7 +159,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      inimigo_0: -24188799
+      bitmap_0: -860512303
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

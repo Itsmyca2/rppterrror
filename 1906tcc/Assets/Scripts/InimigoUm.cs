@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class InimigoUm : MonoBehaviour
 {
@@ -19,13 +20,23 @@ public class InimigoUm : MonoBehaviour
 
      private Transform alvo;
      [SerializeField] private float raioVisao;
-     [SerializeField] private LayerMask playerLayer;
+     [SerializeField] private LayerMask enemyLayer;
+     public int vida;
+     public Transform barraDeVida;        //barra verde
+     public GameObject barradeVidaObject; // objeto pai das barras
+
+     private Vector3 escalaBarraVida; //tamanho da barra
+     private float barraVidaPercentual;
+     
+     
      
 
 
 // Start is called before the first frame update
     void Start()
     {
+        escalaBarraVida = barraDeVida.localScale;
+        barraVidaPercentual = escalaBarraVida.x / vida;
         
     }
 
@@ -42,6 +53,12 @@ public class InimigoUm : MonoBehaviour
         {
             PararMovimentacao();
         }
+    }
+
+    void UpdateBarraVida()
+    {
+        escalaBarraVida.x = barraVidaPercentual * vida;
+        barraDeVida.localScale = escalaBarraVida;
     }
     void MovimentoInimigo()
     {
@@ -84,7 +101,7 @@ public class InimigoUm : MonoBehaviour
     private void ProcurarJogador()
     {
         //Debug.Log("Procurando");
-       Collider2D colisor = Physics2D.OverlapCircle(this.transform.position, this.raioVisao, playerLayer );
+       Collider2D colisor = Physics2D.OverlapCircle(this.transform.position, this.raioVisao, enemyLayer );
        if (colisor != null)
        {
            //Debug.Log("Achei");
@@ -99,5 +116,14 @@ public class InimigoUm : MonoBehaviour
     private void PararMovimentacao()
     {
         this.rigidBody2D.velocity = Vector2.zero;
+    }
+
+    public void ReceberDano()
+    {
+        vida--;
+        if (vida == 0)
+        {
+            GameObject.Destroy(this.gameObject);
+        }
     }
 }

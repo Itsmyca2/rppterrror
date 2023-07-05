@@ -26,11 +26,13 @@ public class Personagem : MonoBehaviour
 
 
     private float attackCheckX;
+    private InimigoUm inimigo;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        inimigo = GameObject.Find("Cavaleiro").GetComponent<InimigoUm>();
         playerAnim = GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
@@ -141,10 +143,16 @@ public class Personagem : MonoBehaviour
     void PlayerAttack()
     {
         Collider2D[] enemiesAttack = Physics2D.OverlapCircleAll(attackCheck.position, raioAtaque, layerEnemy);
+        
         for (int i = 0; i < enemiesAttack.Length; i++)
         {
             enemiesAttack [i].SendMessage ("Inimigo");
             Debug.Log (enemiesAttack [i].name);
+        }
+
+        if (enemiesAttack != null)
+        {
+            inimigo.ReceberDano();
         }
     }
 }
