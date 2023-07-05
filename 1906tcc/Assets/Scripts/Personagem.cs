@@ -10,6 +10,8 @@ public class Personagem : MonoBehaviour
     public int velocidade;
     public float forcaPulo;
     private Rigidbody2D rig;
+    public int vidaJogador;
+    
     public bool taNoChao;
     public Transform detectaChao;
     public LayerMask oQueEChao;
@@ -155,5 +157,10 @@ public class Personagem : MonoBehaviour
         {
             inimigo.ReceberDano();
         }
+    }
+
+     public void ReceberDano()
+    {
+        vidaJogador--;
     }
 }

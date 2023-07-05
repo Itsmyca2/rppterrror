@@ -844,8 +844,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393227884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.3695, y: -3.545, z: 0}
-  m_LocalScale: {x: 0.17175542, y: 0.17175542, z: 0.17175542}
+  m_LocalPosition: {x: 11.4197, y: -3.527, z: 0}
+  m_LocalScale: {x: 0.19027065, y: 0.19027065, z: 0.19027065}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 769898369}
@@ -868,6 +868,7 @@ MonoBehaviour:
   distanciaMinima: 1
   rigidBody2D: {fileID: 393227886}
   spriteRender: {fileID: 393227887}
+  alvo: {fileID: 0}
   raioVisao: 2
   playerLayer:
     serializedVersion: 2
@@ -875,6 +876,7 @@ MonoBehaviour:
   vida: 3
   barraDeVida: {fileID: 1444247944}
   barradeVidaObject: {fileID: 769898368}
+  distanciaMaxAtaque: 1.5
 --- !u!1 &495877425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,7 +1039,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.2192054, y: -2.2016897, z: -10}
+  m_LocalPosition: {x: -6.2498636, y: -2.2061098, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1529,7 +1531,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769898368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.12, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2345,6 +2347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidade: 4
   forcaPulo: 6
+  vidaJogador: 3
   taNoChao: 0
   detectaChao: {fileID: 1284353833}
   oQueEChao:
@@ -2759,6 +2762,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1911953376}
   - component: {fileID: 1911953375}
+  - component: {fileID: 1911953378}
+  - component: {fileID: 1911953377}
   m_Layer: 0
   m_Name: LimiteDaCamera
   m_TagString: Untagged
@@ -2791,18 +2796,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.8766093, y: 1.7281146}
+    - - {x: -0.8836391, y: 0.7580138}
       - {x: -0.87333274, y: -0.0012395382}
-      - {x: 1.883941, y: -0.01009351}
+      - {x: 3.3316784, y: -0.018814802}
       - {x: 5.6658835, y: 0.013170004}
       - {x: 5.571469, y: -2.859285}
       - {x: 10.051351, y: -2.8656583}
       - {x: 9.940229, y: 0.027330458}
       - {x: 9.823485, y: 1.6130122}
-      - {x: 5.5993567, y: 1.592085}
-      - {x: 5.582938, y: 3.066524}
-      - {x: 1.963407, y: 3.0311472}
-      - {x: 1.979042, y: 1.688976}
+      - {x: 4.296387, y: 0.7326797}
+      - {x: 3.4344249, y: 0.30811018}
+      - {x: 3.365697, y: 0.7966675}
+      - {x: 3.3338804, y: 0.81951237}
 --- !u!4 &1911953376
 Transform:
   m_ObjectHideFlags: 0
@@ -2818,6 +2823,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!66 &1911953377
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911953374}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths: []
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+--- !u!50 &1911953378
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911953374}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1924255760
 GameObject:
   m_ObjectHideFlags: 3

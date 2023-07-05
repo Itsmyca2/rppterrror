@@ -18,7 +18,7 @@ public class InimigoUm : MonoBehaviour
 
     #endregion
 
-     private Transform alvo;
+     public Transform alvo;
      [SerializeField] private float raioVisao;
      [SerializeField] private LayerMask playerLayer;
      
@@ -28,6 +28,10 @@ public class InimigoUm : MonoBehaviour
      
      private Vector3 escalaBarraVida; //tamanho da barra
      private float barraVidaPercentual;
+
+     public float distanciaMaxAtaque;
+     private float intervaloAtaque;
+     private float tempoEsperaProxAtaque;
      
      
      
@@ -38,7 +42,8 @@ public class InimigoUm : MonoBehaviour
     {
         escalaBarraVida = barraDeVida.localScale;
         barraVidaPercentual = escalaBarraVida.x / vida;
-        
+        this.tempoEsperaProxAtaque = this.intervaloAtaque;
+
     }
 
     // Update is called once per frame
@@ -49,6 +54,7 @@ public class InimigoUm : MonoBehaviour
         if (this.alvo != null) //se tem um alvo
         {
             MovimentoInimigo();
+            VerficarProximoAtaque();
         }
         else // se nao tiver alvo
         {
@@ -127,6 +133,26 @@ public class InimigoUm : MonoBehaviour
         if (vida == 0)
         {
             GameObject.Destroy(this.gameObject);
+        }
+    }
+
+    private void Atacar()
+    {
+        Personagem personagem = alvo.GetComponent<Personagem>();
+        personagem.ReceberDano();
+    }
+
+    private void VerficarProximoAtaque()
+    {
+        float distancia = Vector3.Distance(this.transform.position, alvo.position);
+        if (distancia <= this.distanciaMaxAtaque)
+        {
+            this.tempoEsperaProxAtaque -= Time.deltaTime;
+            if (tempoEsperaProxAtaque <= 0)
+            {
+                this.tempoEsperaProxAtaque = this.intervaloAtaque;
+                Atacar();
+            }
         }
     }
 }
