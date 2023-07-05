@@ -18,6 +18,7 @@ public class Personagem : MonoBehaviour
 
     [Header("Lugar do Ataque")] 
     public Transform attackCheck;
+    private float attackCheckX;
 
     public float raioAtaque;
     public LayerMask layerEnemy;
@@ -25,7 +26,7 @@ public class Personagem : MonoBehaviour
     private float tempoAtaque;
 
 
-    private float attackCheckX;
+    
     private InimigoUm inimigo;
 
 

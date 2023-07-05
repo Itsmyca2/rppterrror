@@ -20,11 +20,12 @@ public class InimigoUm : MonoBehaviour
 
      private Transform alvo;
      [SerializeField] private float raioVisao;
-     [SerializeField] private LayerMask enemyLayer;
+     [SerializeField] private LayerMask playerLayer;
+     
      public int vida;
      public Transform barraDeVida;        //barra verde
      public GameObject barradeVidaObject; // objeto pai das barras
-
+     
      private Vector3 escalaBarraVida; //tamanho da barra
      private float barraVidaPercentual;
      
@@ -86,6 +87,7 @@ public class InimigoUm : MonoBehaviour
             {
                 this.spriteRender.flipX = false;
             }
+            
         }
         else
         {
@@ -101,7 +103,7 @@ public class InimigoUm : MonoBehaviour
     private void ProcurarJogador()
     {
         //Debug.Log("Procurando");
-       Collider2D colisor = Physics2D.OverlapCircle(this.transform.position, this.raioVisao, enemyLayer );
+       Collider2D colisor = Physics2D.OverlapCircle(this.transform.position, this.raioVisao, playerLayer );
        if (colisor != null)
        {
            //Debug.Log("Achei");
