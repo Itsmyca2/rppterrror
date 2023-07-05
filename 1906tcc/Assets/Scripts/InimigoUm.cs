@@ -121,6 +121,7 @@ public class InimigoUm : MonoBehaviour
     public void ReceberDano()
     {
         vida--;
+        UpdateBarraVida();
         if (vida == 0)
         {
             GameObject.Destroy(this.gameObject);
