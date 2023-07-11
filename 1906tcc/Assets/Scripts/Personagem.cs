@@ -154,11 +154,23 @@ public class Personagem : MonoBehaviour
      public void ReceberDano()
     {
         vidaJogador--;
+        MudarVermelho();
+        Invoke("MudarBranco", 0.3f);
         if (this.vidaJogador < 0)
         {
             this.vidaJogador = 0;
         }
     }
+
+     public void MudarVermelho()
+     {
+         sprite.color = new Color(1,0.62f,0.62f, 1);
+     }
+
+     public void MudarBranco()
+     {
+         sprite.color = Color.white;
+     }
 
      public bool Derrotado
      {
