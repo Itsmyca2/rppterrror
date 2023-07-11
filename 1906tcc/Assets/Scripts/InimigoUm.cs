@@ -30,7 +30,7 @@ public class InimigoUm : MonoBehaviour
      private float barraVidaPercentual;
 
      public float distanciaMaxAtaque;
-     private float intervaloAtaque;
+     [SerializeField] private float intervaloAtaque;
      private float tempoEsperaProxAtaque;
      
      
@@ -144,6 +144,13 @@ public class InimigoUm : MonoBehaviour
 
     private void VerficarProximoAtaque()
     {
+        Personagem personagem = alvo.GetComponent<Personagem>();
+        if (personagem.Derrotado)
+        {
+            //vai interromper o resto do metodo
+            return;
+        }
+        
         float distancia = Vector3.Distance(this.transform.position, alvo.position);
         if (distancia <= this.distanciaMaxAtaque)
         {

@@ -28,14 +28,11 @@ public class Personagem : MonoBehaviour
     private float tempoAtaque;
 
 
-    
-    private InimigoUm inimigo;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        inimigo = GameObject.Find("Cavaleiro").GetComponent<InimigoUm>();
+        
         playerAnim = GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
@@ -149,18 +146,26 @@ public class Personagem : MonoBehaviour
         
         for (int i = 0; i < enemiesAttack.Length; i++)
         {
-            enemiesAttack [i].SendMessage ("Inimigo");
-            Debug.Log (enemiesAttack [i].name);
-        }
-
-        if (enemiesAttack != null)
-        {
-            inimigo.ReceberDano();
+            enemiesAttack [i].SendMessage("ReceberDano");
+            
         }
     }
 
      public void ReceberDano()
     {
         vidaJogador--;
+        if (this.vidaJogador < 0)
+        {
+            this.vidaJogador = 0;
+        }
     }
+
+     public bool Derrotado
+     {
+         get
+         {
+             return (this.vidaJogador <= 0);
+         }
+         
+     }
 }
