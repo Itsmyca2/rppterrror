@@ -167,9 +167,13 @@ public class Personagem : MonoBehaviour
         barraVidaJogador.value = vidaJogador;
         MudarVermelho();
         Invoke("MudarBranco", 0.3f);
-        if (this.vidaJogador < 0)
+        
+        if (this.vidaJogador <= 0)
         {
+            playerAnim.SetBool("Death", true);
             this.vidaJogador = 0;
+            Time.timeScale = 0.0f;
+            
         }
     }
 
