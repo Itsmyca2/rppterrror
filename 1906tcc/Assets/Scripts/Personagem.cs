@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Personagem : MonoBehaviour
 {
     //private GameObject lugarataque = GameObject.FindWithTag("lugarataque");
@@ -10,8 +11,12 @@ public class Personagem : MonoBehaviour
     public int velocidade;
     public float forcaPulo;
     private Rigidbody2D rig;
-    public int vidaJogador;
     
+    
+    public int vidaJogador;
+    public Slider barraVidaJogador;
+    
+
     public bool taNoChao;
     public Transform detectaChao;
     public LayerMask oQueEChao;
@@ -37,6 +42,11 @@ public class Personagem : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         attackCheckX = attackCheck.localPosition.x;
+
+        barraVidaJogador.maxValue = vidaJogador;
+        barraVidaJogador.value = vidaJogador;
+        
+        
     }
 
     // Update is called once per frame
@@ -154,6 +164,7 @@ public class Personagem : MonoBehaviour
      public void ReceberDano()
     {
         vidaJogador--;
+        barraVidaJogador.value = vidaJogador;
         MudarVermelho();
         Invoke("MudarBranco", 0.3f);
         if (this.vidaJogador < 0)
