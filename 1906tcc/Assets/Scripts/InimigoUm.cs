@@ -129,8 +129,15 @@ public class InimigoUm : MonoBehaviour
     public void ReceberDano()
     {
         vida--;
+        bool pocaoforcaativada = GameObject.FindGameObjectWithTag("Player").GetComponent<Personagem>().tacompocaoforca;
+
+        if (pocaoforcaativada)
+        {
+            vida--;
+        }
+        
         UpdateBarraVida();
-        if (vida == 0)
+        if (vida <= 0)
         {
             GameObject.Destroy(this.gameObject);
         }

@@ -5,6 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - lugarataque
+  - pocao vida
+  - pocaodefesa
+  - pocaoforca
+  - Inimigo
+  - deadzone
+  - plataforma
+  - espinho
+  - espinhos
+  - alavanca
   layers:
   - Default
   - TransparentFX

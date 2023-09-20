@@ -31,12 +31,18 @@ public class Personagem : MonoBehaviour
     public LayerMask layerEnemy;
     float tempoProximoAtaque;
     private float tempoAtaque;
+    public bool porcaodefesaativa = false;
+    public bool tacompocaoforca = false;
+
+    public GameObject ponteI;
+    public GameObject ponteII;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+  
         
         playerAnim = GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
@@ -116,12 +122,53 @@ public class Personagem : MonoBehaviour
         Gizmos.DrawSphere(attackCheck.position, raioAtaque);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (collision.gameObject.name == "Tilemap")
+        if (other.gameObject.CompareTag("deadzone"))
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+        
+        if (other.gameObject.name == "Tilemap")
         {
             playerAnim.SetBool("Jump", false);
         }
+
+        if (other.gameObject.CompareTag("pocao vida"))
+        {
+            barraVidaJogador.maxValue = vidaJogador;
+        }
+
+        if (other.gameObject.CompareTag("pocaoforca"))
+        {
+            tacompocaoforca = true;
+        }
+
+        if (other.gameObject.CompareTag("pocaodefesa"))
+        {
+            porcaodefesaativa = true;
+        }
+
+        if (other.gameObject.CompareTag("plataforma"))
+        {
+            forcaPulo = 10;
+        }
+
+        if (other.gameObject.CompareTag("espinhos"))
+        {
+            vidaJogador -= 1;
+            barraVidaJogador.value = vidaJogador;
+            MudarVermelho();
+            
+            Invoke("MudarBranco", 0.3f);
+        }
+
+        if (other.gameObject.CompareTag("alavanca"))
+        {
+            ponteI.SetActive(true);
+            ponteII.SetActive(true);
+        }
+        
     }
 
     private void Attack()
@@ -163,7 +210,16 @@ public class Personagem : MonoBehaviour
 
      public void ReceberDano()
     {
-        vidaJogador--;
+        
+        if (porcaodefesaativa)
+        {
+            vidaJogador--;
+        }
+        else
+        {
+            vidaJogador -= 5;
+        }
+        
         barraVidaJogador.value = vidaJogador;
         MudarVermelho();
         Invoke("MudarBranco", 0.3f);
