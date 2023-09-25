@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using Slider = UnityEngine.UI.Slider;
+
 public class Personagem : MonoBehaviour
 {
     //private GameObject lugarataque = GameObject.FindWithTag("lugarataque");
@@ -168,7 +170,20 @@ public class Personagem : MonoBehaviour
             ponteI.SetActive(true);
             ponteII.SetActive(true);
         }
+
+        if (other.gameObject.CompareTag("plataformamovimento"))
+        {
+            this.transform.parent = other.transform;
+        }
         
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("plataformamovimento"))
+        {
+            this.transform.parent = null;
+        }
     }
 
     private void Attack()

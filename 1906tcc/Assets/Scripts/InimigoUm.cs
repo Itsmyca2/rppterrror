@@ -34,6 +34,13 @@ public class InimigoUm : MonoBehaviour
      private float tempoEsperaProxAtaque;
      
      
+     public GameObject flecha;
+     public Transform pontoFlecha;
+     public bool arqueiro;
+     public float tempoTiros;
+     public float atualTempTiros;
+     
+     
      
 
 
@@ -51,15 +58,26 @@ public class InimigoUm : MonoBehaviour
     {
         //MovimentoInimigo();
         ProcurarJogador();
-        if (this.alvo != null) //se tem um alvo
+        if (!arqueiro)
         {
-            MovimentoInimigo();
-            VerficarProximoAtaque();
+            if (this.alvo != null) //se tem um alvo
+            {
+                MovimentoInimigo();
+                VerficarProximoAtaque();
+            }
+            else // se nao tiver alvo
+            {
+                PararMovimentacao();
+            }
         }
-        else // se nao tiver alvo
+
+        if (arqueiro)
         {
-            PararMovimentacao();
+            TiroArqueiro();
         }
+        
+        
+        
     }
 
     void UpdateBarraVida()
@@ -147,6 +165,8 @@ public class InimigoUm : MonoBehaviour
     {
         Personagem personagem = alvo.GetComponent<Personagem>();
         personagem.ReceberDano();
+        
+        
     }
 
     private void VerficarProximoAtaque()
@@ -169,4 +189,19 @@ public class InimigoUm : MonoBehaviour
             }
         }
     }
+
+    public void TiroArqueiro()
+    {
+        atualTempTiros -= Time.deltaTime;
+        if (atualTempTiros <= 0)
+        {
+            
+                Quaternion rotation = Quaternion.Euler(0, 0, 0);
+                Instantiate(flecha, pontoFlecha.position, rotation);
+                atualTempTiros = tempoTiros;
+
+        }
+    }
+    
+    
 }
