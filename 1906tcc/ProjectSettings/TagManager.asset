@@ -15,6 +15,7 @@ TagManager:
   - espinhos
   - alavanca
   - plataformamovimento
+  - moeda
   layers:
   - Default
   - TransparentFX

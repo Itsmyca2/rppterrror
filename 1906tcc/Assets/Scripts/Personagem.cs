@@ -9,8 +9,9 @@ using Slider = UnityEngine.UI.Slider;
 public class Personagem : MonoBehaviour
 {
     //private GameObject lugarataque = GameObject.FindWithTag("lugarataque");
-    
-    public int velocidade;
+
+    public float velocidadeMax;
+    public float velocidade;
     public float forcaPulo;
     private Rigidbody2D rig;
     
@@ -39,7 +40,10 @@ public class Personagem : MonoBehaviour
     public GameObject ponteI;
     public GameObject ponteII;
 
+    public int moedasColetadas;
 
+    public Vector2 boxSize;
+    public float castDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -53,15 +57,17 @@ public class Personagem : MonoBehaviour
 
         barraVidaJogador.maxValue = vidaJogador;
         barraVidaJogador.value = vidaJogador;
-        
-        
+
+        moedasColetadas = PlayerPrefs.GetInt("QuantidadeMoedas");
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Jump();
         DetectarChao();
+        Jump();
         Attack();
     }
 
@@ -74,6 +80,15 @@ public class Personagem : MonoBehaviour
     {
         float horizontalMovimento = Input.GetAxisRaw("Horizontal");
         rig.velocity = new Vector2(horizontalMovimento * velocidade, rig.velocity.y);
+
+        if (rig.velocity.magnitude > velocidadeMax)
+        {
+            rig.velocity = rig.velocity.normalized * velocidadeMax;
+        }
+        
+        //rig.AddForce(horizontalMovimento * aceleracao * Vector2.right * Time.fixedDeltaTime);
+        //if (Mathf.Abs(rig.velocity.x) > velocidade)
+         //   rig.velocity = new Vector2(Mathf.Sign(rig.velocity.x) * velocidade, rig.velocity.y);
        
         
         
@@ -101,26 +116,43 @@ public class Personagem : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") && taNoChao == true)
+        if (Input.GetButtonDown("Jump") && taNoChao)
         {
-            playerAnim.SetBool("Jump", true);
             playerAnim.SetBool("Attack", false);
             rig.AddForce(new Vector2(0f, forcaPulo), ForceMode2D.Impulse);
-
         }
-        taNoChao = true;
     }
 
     void DetectarChao()
     {
         //playerAnim.SetBool("Jump", false);
-        taNoChao = Physics2D.OverlapCircle(detectaChao.position, 0.2f, oQueEChao);
+        //taNoChao = Physics2D.OverlapCircle(detectaChao.position, 0.2f, oQueEChao);
         
+        playerAnim.SetFloat("VelocityY", rig.velocity.y);
+        
+        bool taOnde = Physics2D.BoxCast(detectaChao.position, boxSize,0, Vector2.down,castDistance,oQueEChao);
+
+        if (taOnde)
+        {
+            taNoChao = true;
+        }
+        else
+        {
+            taNoChao = false;
+        }
+        
+        playerAnim.SetBool("TaNoChao", taNoChao);
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(detectaChao.position,0.2f);
+        Gizmos.DrawWireCube(detectaChao.position, boxSize);
+        
+        Gizmos.DrawLine(detectaChao.position, detectaChao.position + castDistance*Vector3.down );
+        
+        Gizmos.DrawWireCube(detectaChao.position+castDistance*Vector3.down, boxSize);
+        
+        //Gizmos.DrawSphere(detectaChao.position,0.2f);
         Gizmos.DrawSphere(attackCheck.position, raioAtaque);
     }
 
@@ -131,10 +163,10 @@ public class Personagem : MonoBehaviour
             SceneManager.LoadScene("SampleScene");
         }
         
-        if (other.gameObject.name == "Tilemap")
+        /*if (other.gameObject.name == "Tilemap")
         {
             playerAnim.SetBool("Jump", false);
-        }
+        }*/
 
         if (other.gameObject.CompareTag("pocao vida"))
         {
@@ -173,7 +205,7 @@ public class Personagem : MonoBehaviour
 
         if (other.gameObject.CompareTag("plataformamovimento"))
         {
-            this.transform.parent = other.transform;
+            transform.parent = other.transform;
         }
         
     }
@@ -182,7 +214,7 @@ public class Personagem : MonoBehaviour
     {
         if (other.gameObject.CompareTag("plataformamovimento"))
         {
-            this.transform.parent = null;
+            transform.parent = null;
         }
     }
 
@@ -265,5 +297,12 @@ public class Personagem : MonoBehaviour
              return (this.vidaJogador <= 0);
          }
          
+     }
+
+    
+     public void ColetarMoedas()
+     {
+         moedasColetadas += 1;
+         PlayerPrefs.SetInt("QuantidadeMoedas", moedasColetadas);
      }
 }

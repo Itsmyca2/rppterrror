@@ -27,7 +27,7 @@ public class MovimentoPlataforma : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         MovePlatform();
     }
@@ -50,7 +50,7 @@ public class MovimentoPlataforma : MonoBehaviour
                 _currentMoveDirection = (posicaoInicial + _moveTarget - (Vector2) transform.position).normalized;
             }
         }
-        transform.position += (Vector3)_currentMoveDirection * moveSpeed * Time.deltaTime;
+        transform.position += (Vector3)_currentMoveDirection * moveSpeed * Time.fixedDeltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

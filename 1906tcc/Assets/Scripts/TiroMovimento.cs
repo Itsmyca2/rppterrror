@@ -28,7 +28,9 @@ public class TiroMovimento : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<Personagem>().vidaJogador -= 2;
+            Debug.Log("chegou");
+            
+            other.gameObject.GetComponent<Personagem>().ReceberDano();
             Destroy(this.gameObject);
         }
         
