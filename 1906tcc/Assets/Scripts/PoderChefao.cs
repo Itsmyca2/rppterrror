@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TiroMovimento : MonoBehaviour
+public class PoderChefao : MonoBehaviour
 {
-    public float velocidadeTiro;
-    public int darDano;
+    public float velocidadePoder;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -21,19 +21,19 @@ public class TiroMovimento : MonoBehaviour
 
     private void TirosMovimentos()
     {
-        transform.Translate(Vector3.left * velocidadeTiro * Time.deltaTime);
+        transform.Translate(Vector3.left * velocidadePoder* Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("chegou");
-            
-            other.gameObject.GetComponent<Personagem>().ReceberDano();
+            other.gameObject.GetComponent<Personagem>(). ColidindoComMagia();
             Destroy(this.gameObject);
         }
         
 
     }
+    
+    
 }

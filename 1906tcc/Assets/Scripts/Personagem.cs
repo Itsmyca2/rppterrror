@@ -45,6 +45,10 @@ public class Personagem : MonoBehaviour
     public Vector2 boxSize;
     public float castDistance;
 
+    public bool recebendoDanoChefao;
+    
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -156,59 +160,7 @@ public class Personagem : MonoBehaviour
         Gizmos.DrawSphere(attackCheck.position, raioAtaque);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("deadzone"))
-        {
-            SceneManager.LoadScene("SampleScene");
-        }
-        
-        /*if (other.gameObject.name == "Tilemap")
-        {
-            playerAnim.SetBool("Jump", false);
-        }*/
-
-        if (other.gameObject.CompareTag("pocao vida"))
-        {
-            barraVidaJogador.maxValue = vidaJogador;
-        }
-
-        if (other.gameObject.CompareTag("pocaoforca"))
-        {
-            tacompocaoforca = true;
-        }
-
-        if (other.gameObject.CompareTag("pocaodefesa"))
-        {
-            porcaodefesaativa = true;
-        }
-
-        if (other.gameObject.CompareTag("plataforma"))
-        {
-            forcaPulo = 10;
-        }
-
-        if (other.gameObject.CompareTag("espinhos"))
-        {
-            vidaJogador -= 1;
-            barraVidaJogador.value = vidaJogador;
-            MudarVermelho();
-            
-            Invoke("MudarBranco", 0.3f);
-        }
-
-        if (other.gameObject.CompareTag("alavanca"))
-        {
-            ponteI.SetActive(true);
-            ponteII.SetActive(true);
-        }
-
-        if (other.gameObject.CompareTag("plataformamovimento"))
-        {
-            transform.parent = other.transform;
-        }
-        
-    }
+    
 
     private void OnCollisionExit2D(Collision2D other)
     {
@@ -304,5 +256,64 @@ public class Personagem : MonoBehaviour
      {
          moedasColetadas += 1;
          PlayerPrefs.SetInt("QuantidadeMoedas", moedasColetadas);
+     }
+     
+     private void OnCollisionEnter2D(Collision2D other)
+     {
+         if (other.gameObject.CompareTag("deadzone"))
+         {
+             SceneManager.LoadScene("SampleScene");
+         }
+        
+         /*if (other.gameObject.name == "Tilemap")
+         {
+             playerAnim.SetBool("Jump", false);
+         }*/
+
+         if (other.gameObject.CompareTag("pocao vida"))
+         {
+             barraVidaJogador.maxValue = vidaJogador;
+         }
+
+         if (other.gameObject.CompareTag("pocaoforca"))
+         {
+             tacompocaoforca = true;
+         }
+
+         if (other.gameObject.CompareTag("pocaodefesa"))
+         {
+             porcaodefesaativa = true;
+         }
+
+         if (other.gameObject.CompareTag("plataforma"))
+         {
+             forcaPulo = 10;
+         }
+
+         if (other.gameObject.CompareTag("espinhos"))
+         {
+             vidaJogador -= 1;
+             barraVidaJogador.value = vidaJogador;
+             MudarVermelho();
+            
+             Invoke("MudarBranco", 0.3f);
+         }
+
+         if (other.gameObject.CompareTag("alavanca"))
+         {
+             ponteI.SetActive(true);
+             ponteII.SetActive(true);
+         }
+
+         if (other.gameObject.CompareTag("plataformamovimento"))
+         {
+             transform.parent = other.transform;
+         }
+        
+     }
+
+     public void ColidindoComMagia()
+     {
+         vidaJogador -= 20;
      }
 }

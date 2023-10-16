@@ -39,8 +39,10 @@ public class InimigoUm : MonoBehaviour
      public bool arqueiro;
      public float tempoTiros;
      public float atualTempTiros;
-     
-     
+
+     public bool chefao;
+     public Transform pontoPoder;
+     public GameObject poder;
      
 
 
@@ -75,7 +77,11 @@ public class InimigoUm : MonoBehaviour
         {
             TiroArqueiro();
         }
-        
+
+        if (chefao)
+        {
+            PoderChefao();
+        }
         
         
     }
@@ -200,6 +206,17 @@ public class InimigoUm : MonoBehaviour
                 Instantiate(flecha, pontoFlecha.position, rotation);
                 atualTempTiros = tempoTiros;
 
+        }
+    }
+
+    public void PoderChefao()
+    {
+        atualTempTiros -= Time.deltaTime;
+        if (atualTempTiros <= 0)
+        {
+            Quaternion rotation = Quaternion.Euler(0, 0, 0);
+            Instantiate(poder, pontoPoder.position, rotation);
+            atualTempTiros = tempoTiros;
         }
     }
     
