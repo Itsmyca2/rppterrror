@@ -29,6 +29,7 @@ public class PoderChefao : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<Personagem>(). ColidindoComMagia();
+            other.gameObject.GetComponent<Personagem>().ReceberDano();
             Destroy(this.gameObject);
         }
         

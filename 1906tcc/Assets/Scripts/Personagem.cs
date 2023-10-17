@@ -73,6 +73,7 @@ public class Personagem : MonoBehaviour
         DetectarChao();
         Jump();
         Attack();
+        Morreu();
     }
 
     private void FixedUpdate()
@@ -187,12 +188,6 @@ public class Personagem : MonoBehaviour
                 
             }
         }
-        
-        
-        {
-            
-        }
-
 
     }
 
@@ -213,23 +208,33 @@ public class Personagem : MonoBehaviour
         if (porcaodefesaativa)
         {
             vidaJogador--;
+            barraVidaJogador.value = vidaJogador;
         }
         else
         {
             vidaJogador -= 5;
+            barraVidaJogador.value = vidaJogador;
+        }
+
+        if (recebendoDanoChefao)
+        {
+            vidaJogador -= 10;
+            barraVidaJogador.value = vidaJogador;
         }
         
-        barraVidaJogador.value = vidaJogador;
+        
         MudarVermelho();
         Invoke("MudarBranco", 0.3f);
         
-        if (this.vidaJogador <= 0)
+       /* if (this.vidaJogador <= 0)
         {
+           
             playerAnim.SetBool("Death", true);
             this.vidaJogador = 0;
             Time.timeScale = 0.0f;
             
         }
+        */
     }
 
      public void MudarVermelho()
@@ -247,6 +252,8 @@ public class Personagem : MonoBehaviour
          get
          {
              return (this.vidaJogador <= 0);
+             
+             
          }
          
      }
@@ -264,11 +271,6 @@ public class Personagem : MonoBehaviour
          {
              SceneManager.LoadScene("SampleScene");
          }
-        
-         /*if (other.gameObject.name == "Tilemap")
-         {
-             playerAnim.SetBool("Jump", false);
-         }*/
 
          if (other.gameObject.CompareTag("pocao vida"))
          {
@@ -315,5 +317,32 @@ public class Personagem : MonoBehaviour
      public void ColidindoComMagia()
      {
          vidaJogador -= 20;
+         //barraVidaJogador.value = vidaJogador;
+         //MudarVermelho();
+         //Invoke("MudarBranco", 0.3f);
+         
+     }
+
+     public void OnTriggerEnter2D(Collider2D other)
+     {
+         if (other.gameObject.CompareTag("magia"))
+         {
+             recebendoDanoChefao = true;
+         }
+     }
+
+     public void Morreu()
+     {
+         if (this.vidaJogador <= 0)
+         {
+           
+             playerAnim.SetBool("Death", true);
+             playerAnim.SetBool("Attack", false);
+             playerAnim.SetBool("TaNoChao", false);
+             playerAnim.SetBool("Walk", false);
+             this.vidaJogador = 0;
+             Time.timeScale = 0.0f;
+            
+         }
      }
 }
