@@ -849,9 +849,9 @@ GameObject:
   - component: {fileID: 263176157}
   - component: {fileID: 263176156}
   - component: {fileID: 263176155}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chefao
-  m_TagString: Untagged
+  m_TagString: Inimigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -873,7 +873,7 @@ MonoBehaviour:
   rigidBody2D: {fileID: 263176156}
   spriteRender: {fileID: 263176158}
   alvo: {fileID: 0}
-  raioVisao: 3.82
+  raioVisao: 8.83
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1922,7 +1922,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.2530117, y: -2.2060897, z: -10}
+  m_LocalPosition: {x: -6.2512774, y: -2.2060997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8480,7 +8480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1264472594}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pontoPoder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11290,7 +11290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2202646488450846625, guid: 18d62c97afbfd784aa52d7ebedf81561, type: 3}
       propertyPath: tempoTiros
-      value: 3
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 2202646488450846625, guid: 18d62c97afbfd784aa52d7ebedf81561, type: 3}
       propertyPath: pontoFlecha
@@ -11646,17 +11646,25 @@ PrefabInstance:
       propertyPath: vida
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7528190107620242270, guid: 5a0f2237a44bae841a56f7de0a64402e, type: 3}
+      propertyPath: raioVisao
+      value: 1.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7528190107620242270, guid: 5a0f2237a44bae841a56f7de0a64402e, type: 3}
+      propertyPath: velocidadeMovimento
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7528190107620242271, guid: 5a0f2237a44bae841a56f7de0a64402e, type: 3}
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7528190107620242271, guid: 5a0f2237a44bae841a56f7de0a64402e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -53.452896
+      value: -80.43
       objectReference: {fileID: 0}
     - target: {fileID: 7528190107620242271, guid: 5a0f2237a44bae841a56f7de0a64402e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5675288
+      value: -1.42
       objectReference: {fileID: 0}
     - target: {fileID: 7528190107620242271, guid: 5a0f2237a44bae841a56f7de0a64402e, type: 3}
       propertyPath: m_LocalPosition.z

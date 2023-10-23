@@ -218,7 +218,12 @@ public class Personagem : MonoBehaviour
         {
             vidaJogador -= 5;
         }
-        
+
+        if (recebendoDanoChefao)
+        {
+            vidaJogador -= 20;
+        }
+
         barraVidaJogador.value = vidaJogador;
         MudarVermelho();
         Invoke("MudarBranco", 0.3f);
@@ -312,8 +317,5 @@ public class Personagem : MonoBehaviour
         
      }
 
-     public void ColidindoComMagia()
-     {
-         vidaJogador -= 20;
-     }
+    
 }

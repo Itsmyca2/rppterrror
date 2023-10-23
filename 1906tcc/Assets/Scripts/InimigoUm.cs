@@ -218,6 +218,8 @@ public class InimigoUm : MonoBehaviour
             Instantiate(poder, pontoPoder.position, rotation);
             atualTempTiros = tempoTiros;
         }
+
+        velocidadeMovimento = 1.5f;
     }
     
     
