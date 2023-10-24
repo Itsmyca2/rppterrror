@@ -16,6 +16,7 @@ TagManager:
   - alavanca
   - plataformamovimento
   - moeda
+  - magia
   layers:
   - Default
   - TransparentFX
