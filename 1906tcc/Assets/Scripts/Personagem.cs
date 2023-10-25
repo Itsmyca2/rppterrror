@@ -46,8 +46,12 @@ public class Personagem : MonoBehaviour
     public float castDistance;
 
     public bool recebendoDanoChefao;
-    
-    
+
+    public float groundGravity = 5f;
+    public float jumpTime = 0.1f;
+    private float lastJumpTime;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -123,6 +127,8 @@ public class Personagem : MonoBehaviour
         if (Input.GetButtonDown("Jump") && taNoChao)
         {
             playerAnim.SetBool("Attack", false);
+            rig.gravityScale = 1f;
+            lastJumpTime = Time.time;
             rig.AddForce(new Vector2(0f, forcaPulo), ForceMode2D.Impulse);
         }
     }
@@ -139,10 +145,12 @@ public class Personagem : MonoBehaviour
         if (taOnde)
         {
             taNoChao = true;
+            if(Time.time > lastJumpTime + jumpTime) rig.gravityScale = groundGravity;
         }
         else
         {
             taNoChao = false;
+            rig.gravityScale = 1f;
         }
         
         playerAnim.SetBool("TaNoChao", taNoChao);
