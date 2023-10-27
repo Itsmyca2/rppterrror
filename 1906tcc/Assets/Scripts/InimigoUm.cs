@@ -43,6 +43,8 @@ public class InimigoUm : MonoBehaviour
      public bool chefao;
      public Transform pontoPoder;
      public GameObject poder;
+
+     public DropItens dropScript;
      
 
 
@@ -52,6 +54,7 @@ public class InimigoUm : MonoBehaviour
         escalaBarraVida = barraDeVida.localScale;
         barraVidaPercentual = escalaBarraVida.x / vida;
         this.tempoEsperaProxAtaque = this.intervaloAtaque;
+        dropScript = GetComponent<DropItens>();
 
     }
 
@@ -164,6 +167,7 @@ public class InimigoUm : MonoBehaviour
         if (vida <= 0)
         {
             GameObject.Destroy(this.gameObject);
+            dropScript.Drop();
         }
     }
 

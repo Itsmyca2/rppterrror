@@ -178,13 +178,20 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
-  vida: 4
+  vida: 10
   barraDeVida: {fileID: 2202646488773112959}
   barradeVidaObject: {fileID: 2202646488567105446}
   distanciaMaxAtaque: 0
   intervaloAtaque: 0
-  flecha: {fileID: 0}
-  pontoFlecha: {fileID: 0}
+  flecha: {fileID: 5577987078131813886, guid: a0601b94ced3a844f9143bd538f0e86b, type: 3}
+  pontoFlecha: {fileID: 2202646488244013746}
+  arqueiro: 1
+  tempoTiros: 5
+  atualTempTiros: 0
+  chefao: 0
+  pontoPoder: {fileID: 0}
+  poder: {fileID: 0}
+  dropScript: {fileID: 0}
 --- !u!1 &2202646488567105446
 GameObject:
   m_ObjectHideFlags: 0

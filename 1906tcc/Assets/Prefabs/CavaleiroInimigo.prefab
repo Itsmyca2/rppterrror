@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 7528190107620242241}
   - component: {fileID: 7528190107620242242}
   - component: {fileID: 7528190107620242270}
+  - component: {fileID: 1279266795}
   m_Layer: 7
   m_Name: CavaleiroInimigo
   m_TagString: Inimigo
@@ -195,9 +196,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7528190107620242243}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.419701, y: -3.527, z: 0}
-  m_LocalScale: {x: 0.19027065, y: 0.19027065, z: 0.19027065}
+  m_LocalScale: {x: 0.26013052, y: 0.26013052, z: 0.26013052}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7528190108265343662}
@@ -246,7 +247,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 1244756274, guid: b458e7332d7e96546986264357bb7d50, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9742444, g: 0.8632076, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -319,6 +320,31 @@ MonoBehaviour:
   barradeVidaObject: {fileID: 7528190108265343663}
   distanciaMaxAtaque: 1
   intervaloAtaque: 2
+  flecha: {fileID: 0}
+  pontoFlecha: {fileID: 0}
+  arqueiro: 0
+  tempoTiros: 0
+  atualTempTiros: 0
+  chefao: 0
+  pontoPoder: {fileID: 0}
+  poder: {fileID: 0}
+  dropScript: {fileID: 0}
+--- !u!114 &1279266795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7528190107620242243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353798d342b6acc4f996c101c9e0dd82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 5886929357781195641, guid: f4869dcbc3398f341be2b8538a659ff1, type: 3}
+  itemDropPorcentagem: 100
+  itemMinDrop: 1
+  itemMaxDrop: 3
 --- !u!1 &7528190108265343663
 GameObject:
   m_ObjectHideFlags: 0
