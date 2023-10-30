@@ -50,14 +50,15 @@ public class Personagem : MonoBehaviour
     public float groundGravity = 5f;
     public float jumpTime = 0.1f;
     private float lastJumpTime;
+    public bool colidindoPersonagem;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-  
-        
+
+        colidindoPersonagem = false;
         playerAnim = GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
@@ -184,24 +185,14 @@ public class Personagem : MonoBehaviour
         
        if (tempoAtaque <= 0)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && colidindoPersonagem == false)
             {
                 playerAnim.SetTrigger("Attack");
                 tempoAtaque = 0.2f;
                 PlayerAttack();
             }
-            else
-            {
-                
-            }
         }
-        
-        
-        {
-            
-        }
-
-
+       
     }
 
     void PlayerAttack()
@@ -325,5 +316,22 @@ public class Personagem : MonoBehaviour
         
      }
 
-    
+     public void OnTriggerEnter2D(Collider2D other)
+     {
+         if (other.gameObject.CompareTag("mago"))
+         {
+             colidindoPersonagem = true;
+             
+         }
+     }
+
+     public void OnTriggerExit2D(Collider2D other)
+     {
+         
+         if (other.gameObject.CompareTag("mago"))
+         {
+             colidindoPersonagem = false;
+             
+         }
+     }
 }

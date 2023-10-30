@@ -17,6 +17,8 @@ TagManager:
   - plataformamovimento
   - moeda
   - magia
+  - parededireita
+  - mago
   layers:
   - Default
   - TransparentFX
