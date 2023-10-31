@@ -209,6 +209,8 @@ public class InimigoUm : MonoBehaviour
                 Quaternion rotation = Quaternion.Euler(0, 0, 0);
                 Instantiate(flecha, pontoFlecha.position, rotation);
                 atualTempTiros = tempoTiros;
+                
+               
 
         }
     }

@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/DialogoInicial.unity
+    guid: 1728f48a3b863ec439c45ed82c11950e
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Palacio.unity
+    guid: c5ae5941945708843931c954a06c07f4
   m_configObjects: {}

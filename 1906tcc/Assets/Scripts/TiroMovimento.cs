@@ -5,12 +5,13 @@ using UnityEngine;
 public class TiroMovimento : MonoBehaviour
 {
     public float velocidadeTiro;
-    public int darDano;
+    public GameObject flecha;
+    public float tempoDestruir;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Destroy(flecha, tempoDestruir);
     }
 
     // Update is called once per frame

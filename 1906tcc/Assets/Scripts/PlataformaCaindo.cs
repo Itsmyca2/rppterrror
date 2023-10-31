@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlataformaCaindo : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private float delayqueda = 2f;
+    private float delayqueda = 3f;
     // Start is called before the first frame update
     void Start()
     {

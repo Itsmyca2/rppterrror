@@ -19,6 +19,7 @@ TagManager:
   - magia
   - parededireita
   - mago
+  - deadzoneinicio
   layers:
   - Default
   - TransparentFX

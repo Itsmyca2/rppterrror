@@ -126,3 +126,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidadeTiro: 7
   darDano: 0
+  flecha: {fileID: 5577987078131813886}
+  tempoDestruir: 2
