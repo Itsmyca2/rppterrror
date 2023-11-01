@@ -351,6 +351,9 @@ public class Personagem : MonoBehaviour
              
          }
      }
+
+     
+     
      
      
 
