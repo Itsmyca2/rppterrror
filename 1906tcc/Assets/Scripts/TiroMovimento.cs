@@ -27,7 +27,7 @@ public class TiroMovimento : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("chegou");
             

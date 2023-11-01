@@ -51,6 +51,12 @@ public class Personagem : MonoBehaviour
     public float jumpTime = 0.1f;
     private float lastJumpTime;
     public bool colidindoPersonagem;
+    
+    public int quantidadeAtualMagia;
+    public int quantidadeMaxMagia;
+    public GameObject magia;
+    public Transform pontoMagia;
+    public int danoParaDar;
 
 
 
@@ -69,6 +75,8 @@ public class Personagem : MonoBehaviour
 
         moedasColetadas = PlayerPrefs.GetInt("QuantidadeMoedas");
 
+        quantidadeAtualMagia = quantidadeMaxMagia;
+
 
     }
 
@@ -78,6 +86,7 @@ public class Personagem : MonoBehaviour
         DetectarChao();
         Jump();
         Attack();
+        AtirandoMagia();
     }
 
     private void FixedUpdate()
@@ -94,11 +103,6 @@ public class Personagem : MonoBehaviour
         {
             rig.velocity = rig.velocity.normalized * velocidadeMax;
         }
-        
-        //rig.AddForce(horizontalMovimento * aceleracao * Vector2.right * Time.fixedDeltaTime);
-        //if (Mathf.Abs(rig.velocity.x) > velocidade)
-         //   rig.velocity = new Vector2(Mathf.Sign(rig.velocity.x) * velocidade, rig.velocity.y);
-       
         
         
         if (horizontalMovimento > 0)
@@ -131,6 +135,19 @@ public class Personagem : MonoBehaviour
             rig.gravityScale = 1f;
             lastJumpTime = Time.time;
             rig.AddForce(new Vector2(0f, forcaPulo), ForceMode2D.Impulse);
+        }
+    }
+
+    void AtirandoMagia()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            if (quantidadeAtualMagia <= quantidadeMaxMagia && quantidadeAtualMagia >= 0)
+            {
+                Instantiate(magia, pontoMagia.position, pontoMagia.rotation);
+                quantidadeAtualMagia -= 1;
+            }
+            
         }
     }
 
@@ -334,4 +351,8 @@ public class Personagem : MonoBehaviour
              
          }
      }
+     
+     
+
+
 }
