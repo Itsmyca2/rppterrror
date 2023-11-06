@@ -7,7 +7,8 @@ public class MagiaJogador : MonoBehaviour
     public int velocidadeMagia;
     public GameObject magia;
     public int tempoDestruir;
-    public SpriteRenderer flipPersonagem;
+    public SpriteRenderer magiaSprite;
+    public bool left;
     
     
     
@@ -22,7 +23,9 @@ public class MagiaJogador : MonoBehaviour
     void Update()
     {
         //TirosMovimentos();
-        
+        if (left) MagiaEsquerda();
+        else MagiaDireita();
+
     }
 
    /* private void TirosMovimentos()
@@ -57,11 +60,14 @@ public class MagiaJogador : MonoBehaviour
 
     public void MagiaDireita()
     {
+        //magiaSprite.flipX = false;
         transform.Translate(Vector3.right * velocidadeMagia * Time.deltaTime);
+        
     }
 
     public void MagiaEsquerda()
     {
+        //magiaSprite.flipX = true;
         transform.Translate(Vector3.left * velocidadeMagia * Time.deltaTime);
     }
 }

@@ -8,6 +8,10 @@ public class Portas : MonoBehaviour
 
     public GameObject player;
     public Transform localdeidaI;
+    public bool portamasmorra;
+    public bool portasala;
+    
+    public Transform localdeidaSala;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +26,14 @@ public class Portas : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && portamasmorra)
         {
             player.transform.position = localdeidaI.transform.position;
+        }
+
+        if (other.gameObject.CompareTag("Player") && portasala)
+        {
+            player.transform.position = localdeidaSala.transform.position;
         }
     }
 }

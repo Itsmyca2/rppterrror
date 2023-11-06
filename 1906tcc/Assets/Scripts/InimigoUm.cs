@@ -162,7 +162,12 @@ public class InimigoUm : MonoBehaviour
         {
             vida--;
         }
-        
+
+        if (gameObject.CompareTag("magia"))
+        {
+            vida -= 2;
+        }
+
         UpdateBarraVida();
         if (vida <= 0)
         {
@@ -227,6 +232,7 @@ public class InimigoUm : MonoBehaviour
 
         velocidadeMovimento = 1.5f;
     }
+    
     
     
 }

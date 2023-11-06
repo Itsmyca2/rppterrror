@@ -56,6 +56,7 @@ public class Personagem : MonoBehaviour
     public int quantidadeMaxMagia;
     public GameObject magia;
     public Transform pontoMagia;
+    
     public int danoParaDar;
 
 
@@ -68,15 +69,15 @@ public class Personagem : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        
         attackCheckX = attackCheck.localPosition.x;
-
-        barraVidaJogador.maxValue = vidaJogador;
-        barraVidaJogador.value = vidaJogador;
 
         moedasColetadas = PlayerPrefs.GetInt("QuantidadeMoedas");
 
         quantidadeAtualMagia = quantidadeMaxMagia;
 
+        barraVidaJogador.maxValue = vidaJogador;
+        barraVidaJogador.value = vidaJogador;
 
     }
 
@@ -142,10 +143,13 @@ public class Personagem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            if (quantidadeAtualMagia <= quantidadeMaxMagia && quantidadeAtualMagia >= 0)
+            
+            if (quantidadeAtualMagia > 1)
             {
-                Instantiate(magia, pontoMagia.position, pontoMagia.rotation);
+                MagiaJogador magiaJogador = Instantiate(magia, pontoMagia.position, pontoMagia.rotation).GetComponent<MagiaJogador>();
                 quantidadeAtualMagia -= 1;
+                magiaJogador.left = sprite.flipX;
+
             }
             
         }
@@ -351,11 +355,5 @@ public class Personagem : MonoBehaviour
              
          }
      }
-
      
-     
-     
-     
-
-
 }
