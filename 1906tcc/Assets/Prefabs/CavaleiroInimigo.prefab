@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 5886929357781195641, guid: f4869dcbc3398f341be2b8538a659ff1, type: 3}
-  itemDropPorcentagem: 100
+  itemDropPorcentagem: 50
   itemMinDrop: 1
   itemMaxDrop: 3
 --- !u!1 &7528190108265343663

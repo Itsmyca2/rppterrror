@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using Slider = UnityEngine.UI.Slider;
+using TMPro;
 
 public class Personagem : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class Personagem : MonoBehaviour
     
     public int vidaJogador;
     public Slider barraVidaJogador;
+
+    public Slider barraManaJogador;
+    public int quantidadeAtualMagia;
+    public int quantidadeMaxMagia;
+    public GameObject magia;
+    public Transform pontoMagia;
     
 
     public bool taNoChao;
@@ -51,11 +58,8 @@ public class Personagem : MonoBehaviour
     public float jumpTime = 0.1f;
     private float lastJumpTime;
     public bool colidindoPersonagem;
-    
-    public int quantidadeAtualMagia;
-    public int quantidadeMaxMagia;
-    public GameObject magia;
-    public Transform pontoMagia;
+
+    private TextMeshProUGUI textoMoeda;
     
     public int danoParaDar;
 
@@ -65,6 +69,8 @@ public class Personagem : MonoBehaviour
     void Start()
     {
 
+        textoMoeda = GameObject.FindWithTag("textoMoeda").GetComponent<TextMeshProUGUI>();
+
         colidindoPersonagem = false;
         playerAnim = GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
@@ -72,12 +78,17 @@ public class Personagem : MonoBehaviour
         
         attackCheckX = attackCheck.localPosition.x;
 
-        moedasColetadas = PlayerPrefs.GetInt("QuantidadeMoedas");
+        //moedasColetadas = PlayerPrefs.GetInt("QuantidadeMoedas");
 
         quantidadeAtualMagia = quantidadeMaxMagia;
+        barraManaJogador.maxValue = quantidadeAtualMagia;
+        barraManaJogador.value = quantidadeAtualMagia;
 
         barraVidaJogador.maxValue = vidaJogador;
         barraVidaJogador.value = vidaJogador;
+        
+        
+        
 
     }
 
@@ -148,6 +159,7 @@ public class Personagem : MonoBehaviour
             {
                 MagiaJogador magiaJogador = Instantiate(magia, pontoMagia.position, pontoMagia.rotation).GetComponent<MagiaJogador>();
                 quantidadeAtualMagia -= 1;
+                barraManaJogador.value = quantidadeAtualMagia;
                 magiaJogador.left = sprite.flipX;
 
             }
@@ -279,8 +291,9 @@ public class Personagem : MonoBehaviour
     
      public void ColetarMoedas()
      {
-         moedasColetadas += 1;
-         PlayerPrefs.SetInt("QuantidadeMoedas", moedasColetadas);
+         moedasColetadas ++;
+         textoMoeda.text = moedasColetadas.ToString();
+        // PlayerPrefs.SetInt("QuantidadeMoedas", moedasColetadas);
      }
      
      private void OnCollisionEnter2D(Collision2D other)
@@ -289,11 +302,7 @@ public class Personagem : MonoBehaviour
          {
              SceneManager.LoadScene("SampleScene");
          }
-        
-         /*if (other.gameObject.name == "Tilemap")
-         {
-             playerAnim.SetBool("Jump", false);
-         }*/
+         
 
          if (other.gameObject.CompareTag("pocao vida"))
          {

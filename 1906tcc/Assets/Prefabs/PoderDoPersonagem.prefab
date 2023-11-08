@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2087850038986166215}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.3197923, y: -3.3329356, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.80630136, y: 0.80630136, z: 0.80630136}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -122,7 +122,8 @@ MonoBehaviour:
   velocidadeMagia: 6
   magia: {fileID: 2087850038986166215}
   tempoDestruir: 3
-  flipPersonagem: {fileID: 0}
+  magiaSprite: {fileID: 998517391958176844}
+  left: 0
 --- !u!58 &1490590667281602561
 CircleCollider2D:
   m_ObjectHideFlags: 0
