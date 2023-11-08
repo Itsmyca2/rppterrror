@@ -10,12 +10,15 @@ public class Portas : MonoBehaviour
     public Transform localdeidaI;
     public bool portamasmorra;
     public bool portasala;
+    public Animator animator;
+
+    public float contador;
     
     public Transform localdeidaSala;
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -28,7 +31,13 @@ public class Portas : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && portamasmorra)
         {
-            player.transform.position = localdeidaI.transform.position;
+            contador--;
+            animator.SetBool("porta aberta", true);
+            if (contador <= 0f)
+            {
+                player.transform.position = localdeidaI.transform.position;
+            }
+            
         }
 
         if (other.gameObject.CompareTag("Player") && portasala)
