@@ -315,7 +315,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  vida: 3
+  vida: 5
   barraDeVida: {fileID: 7528190106561488039}
   barradeVidaObject: {fileID: 7528190108265343663}
   distanciaMaxAtaque: 1
