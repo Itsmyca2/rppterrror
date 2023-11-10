@@ -15,6 +15,8 @@ public class Personagem : MonoBehaviour
     public float velocidade;
     public float forcaPulo;
     private Rigidbody2D rig;
+    private SpriteRenderer sprite;
+    private Animator playerAnim;
     
     
     public int vidaJogador;
@@ -30,8 +32,7 @@ public class Personagem : MonoBehaviour
     public bool taNoChao;
     public Transform detectaChao;
     public LayerMask oQueEChao;
-    private SpriteRenderer sprite;
-    private Animator playerAnim;
+   
 
     [Header("Lugar do Ataque")] 
     public Transform attackCheck;
@@ -157,10 +158,20 @@ public class Personagem : MonoBehaviour
             
             if (quantidadeAtualMagia > 1)
             {
-                MagiaJogador magiaJogador = Instantiate(magia, pontoMagia.position, pontoMagia.rotation).GetComponent<MagiaJogador>();
+                MagiaJogador magiaJogador = Instantiate(magia, pontoMagia.position, pontoMagia.rotation = Quaternion.Euler(0, 0, 0)).GetComponent<MagiaJogador>();
+                magiaJogador.left = sprite.flipX;
+                if (magiaJogador.left)
+                {
+                    magiaJogador.GetComponent<SpriteRenderer>().flipX = true;
+                }
+                else
+                {
+                    magiaJogador.GetComponent<SpriteRenderer>().flipX = false;
+                }
+
                 quantidadeAtualMagia -= 1;
                 barraManaJogador.value = quantidadeAtualMagia;
-                magiaJogador.left = sprite.flipX;
+                
 
             }
             
@@ -317,6 +328,15 @@ public class Personagem : MonoBehaviour
          if (other.gameObject.CompareTag("pocaodefesa"))
          {
              porcaodefesaativa = true;
+         }
+
+         if (other.gameObject.CompareTag("porcaomagia"))
+         {
+             quantidadeAtualMagia = quantidadeMaxMagia;
+             barraManaJogador.maxValue = quantidadeAtualMagia;
+             barraManaJogador.value = quantidadeAtualMagia;
+
+             
          }
 
          if (other.gameObject.CompareTag("plataforma"))
