@@ -16,6 +16,7 @@ public class DeadZones : MonoBehaviour
     public Transform pointVI;
     public Transform pointVII;
     public Transform pointVIII;
+    public Transform pointIX;
     
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -50,6 +51,10 @@ public class DeadZones : MonoBehaviour
         if (other.gameObject.CompareTag("dead25262728"))
         {
             player.transform.position = pointVIII.transform.position;
+        }
+        if (other.gameObject.CompareTag("dead29"))
+        {
+            player.transform.position = pointIX.transform.position;
         }
     }
 }
