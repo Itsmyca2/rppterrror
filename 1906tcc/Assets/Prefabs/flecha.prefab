@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2398090413882094253}
   m_Layer: 0
   m_Name: flecha
-  m_TagString: Untagged
+  m_TagString: flecha
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,6 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadeTiro: 7
-  darDano: 0
   flecha: {fileID: 5577987078131813886}
-  tempoDestruir: 2
+  tempoDestruir: 1

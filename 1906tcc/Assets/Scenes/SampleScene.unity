@@ -1126,6 +1126,7 @@ GameObject:
   - component: {fileID: 189334553}
   - component: {fileID: 189334552}
   - component: {fileID: 189334554}
+  - component: {fileID: 189334555}
   m_Layer: 0
   m_Name: Porta Palacio
   m_TagString: Untagged
@@ -1167,7 +1168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189334551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 334.41, y: -2.2, z: 2.9779906}
+  m_LocalPosition: {x: 334.41, y: -1.08, z: 2.9779906}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1186,6 +1187,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f034ba6960d42814da17ea7a2d127af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &189334555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189334551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 506e75dd6e6a98b43ada29f68628a596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogoObj: {fileID: 170519522}
+  foto: {fileID: 21300000, guid: f326896ffe43ac54c9bc3f8800581531, type: 3}
+  textofalado:
+  - Muito bem, agora voce pode seguir sozinho.
+  nome: 
 --- !u!1 &226814407
 GameObject:
   m_ObjectHideFlags: 0
@@ -3936,7 +3954,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.630648, y: -1.85217, z: -6.6}
+  m_LocalPosition: {x: -5.622624, y: -1.8521998, z: -6.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26441,7 +26459,9 @@ MonoBehaviour:
   dialogoObj: {fileID: 170519522}
   foto: {fileID: 21300000, guid: f326896ffe43ac54c9bc3f8800581531, type: 3}
   textofalado:
-  - 'Use a trecla Crtl ou o click esquerdo do mouse. '
+  - Use a trecla Crtl ou o click esquerdo do mouse para atacar com a espada e Z para
+    atacar com a magia.
+  - "Use-a com cuidado. Ela \xE9 limitada"
   nome: 
 --- !u!61 &1892242099
 BoxCollider2D:
@@ -27633,6 +27653,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2587803783369387783, guid: 261a31944bc8786489477f27869fc1cf, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6980033
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587803783369387783, guid: 261a31944bc8786489477f27869fc1cf, type: 3}
+      propertyPath: m_Size.y
+      value: 0.2134999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587803783369387783, guid: 261a31944bc8786489477f27869fc1cf, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.012576103
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587803783369387783, guid: 261a31944bc8786489477f27869fc1cf, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.43379527
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587803783369387783, guid: 261a31944bc8786489477f27869fc1cf, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587803783369387783, guid: 261a31944bc8786489477f27869fc1cf, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073915250416874056, guid: 261a31944bc8786489477f27869fc1cf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c4bd84040dd75024b986e72edd5d759b, type: 3}
     - target: {fileID: 8185075089544057815, guid: 261a31944bc8786489477f27869fc1cf, type: 3}
       propertyPath: m_Name
       value: PlataformaModificiada
@@ -27705,6 +27753,10 @@ PrefabInstance:
     - target: {fileID: 8720402079964611951, guid: 0db1d62e5aeba6d41a2e9b4398f2b55a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720402080048989922, guid: 0db1d62e5aeba6d41a2e9b4398f2b55a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.027
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0db1d62e5aeba6d41a2e9b4398f2b55a, type: 3}

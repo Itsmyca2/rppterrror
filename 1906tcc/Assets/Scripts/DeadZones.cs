@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeadZones : MonoBehaviour
 
@@ -55,6 +56,11 @@ public class DeadZones : MonoBehaviour
         if (other.gameObject.CompareTag("dead29"))
         {
             player.transform.position = pointIX.transform.position;
+        }
+
+        if (other.gameObject.CompareTag("deadfloresta"))
+        {
+            SceneManager.LoadScene("Palacio");
         }
     }
 }

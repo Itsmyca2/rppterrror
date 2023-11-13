@@ -8,8 +8,11 @@ public class Portas : MonoBehaviour
 
     public GameObject player;
     public Transform localdeidaI;
+
+    public Transform localPalacio;
     public bool portamasmorra;
     public bool portasala;
+    public bool portaPalacio;
     public Animator animator;
 
     public float contador;
@@ -43,6 +46,10 @@ public class Portas : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && portasala)
         {
             player.transform.position = localdeidaSala.transform.position;
+        }
+        if (other.gameObject.CompareTag("Player") && portaPalacio)
+        {
+            player.transform.position = localPalacio.transform.position;
         }
     }
 }

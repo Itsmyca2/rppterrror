@@ -31,6 +31,9 @@ TagManager:
   - dead25262728
   - porcaomagia
   - dead29
+  - Enemy
+  - deadfloresta
+  - flecha
   layers:
   - Default
   - TransparentFX

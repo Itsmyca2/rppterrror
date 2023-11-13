@@ -182,6 +182,8 @@ GameObject:
   - component: {fileID: 7528190107620242242}
   - component: {fileID: 7528190107620242270}
   - component: {fileID: 1279266795}
+  - component: {fileID: 1185128942}
+  - component: {fileID: 1185128943}
   m_Layer: 7
   m_Name: CavaleiroInimigo
   m_TagString: Inimigo
@@ -198,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 7528190107620242243}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.419701, y: -3.527, z: 0}
-  m_LocalScale: {x: 0.26013052, y: 0.26013052, z: 0.26013052}
+  m_LocalScale: {x: 0.043508817, y: 0.043508817, z: 0.043508817}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7528190108265343662}
@@ -246,8 +248,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 1244756274, guid: b458e7332d7e96546986264357bb7d50, type: 3}
-  m_Color: {r: 0.9742444, g: 0.8632076, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a227b633e417db444b219c1a40e48c7c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -291,8 +293,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.13146272, y: 0.38427457}
-  m_Size: {x: 4.835355, y: 6.1904235}
+  m_Offset: {x: 0.5330627, y: -0.6184599}
+  m_Size: {x: 2.5628812, y: 4.7807117}
   m_Direction: 0
 --- !u!114 &7528190107620242270
 MonoBehaviour:
@@ -329,6 +331,9 @@ MonoBehaviour:
   pontoPoder: {fileID: 0}
   poder: {fileID: 0}
   dropScript: {fileID: 0}
+  inimigo2Anim: {fileID: 1185128943}
+  inimigoII: 1
+  inimigoIII: 0
 --- !u!114 &1279266795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +350,39 @@ MonoBehaviour:
   itemDropPorcentagem: 50
   itemMinDrop: 1
   itemMaxDrop: 3
+--- !u!95 &1185128942
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7528190107620242243}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e065ca609cc55145966064aabb18dca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1185128943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7528190107620242243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 563e4f42d25664b4ba3127cfa0b0d5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inimigoIIAnimator: {fileID: 1185128942}
 --- !u!1 &7528190108265343663
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7528190108265343663}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.12, y: 0.3, z: 0}
+  m_LocalPosition: {x: 0.06, y: -0.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class InimigoUm : MonoBehaviour
 {
@@ -45,6 +47,11 @@ public class InimigoUm : MonoBehaviour
      public GameObject poder;
 
      public DropItens dropScript;
+
+     public AniEnemyII inimigo2Anim;
+
+     public bool inimigoII;
+     public bool inimigoIII;
      
 
 
@@ -63,7 +70,7 @@ public class InimigoUm : MonoBehaviour
     {
         //MovimentoInimigo();
         ProcurarJogador();
-        if (!arqueiro)
+        /*if (!arqueiro)
         {
             if (this.alvo != null) //se tem um alvo
             {
@@ -74,7 +81,7 @@ public class InimigoUm : MonoBehaviour
             {
                 PararMovimentacao();
             }
-        }
+        }*/
 
         if (arqueiro)
         {
@@ -84,6 +91,19 @@ public class InimigoUm : MonoBehaviour
         if (chefao)
         {
             PoderChefao();
+        }
+
+        if (inimigoII)
+        {
+            if (this.alvo != null) //se tem um alvo
+            {
+                MovimentoInimigo();
+                VerficarProximoAtaque();
+            }
+            else // se nao tiver alvo
+            {
+                PararMovimentacao();
+            }
         }
         
         
@@ -96,35 +116,68 @@ public class InimigoUm : MonoBehaviour
     }
     void MovimentoInimigo()
     {
-        //transform.Translate(Vector3.left * inimigoVelocidade * Time.deltaTime);
 
-        Vector2 posicaoAlvo = this.alvo.position;
-        posicaoAlvo.y = 0;
-        Vector2 posicaoAtual = this.transform.position;
-        posicaoAtual.y = 0;
-
-        float distancia = Vector2.Distance(posicaoAtual, posicaoAlvo);
-        if (distancia >= this.distanciaMinima)
+        if (inimigoII)
         {
-            Vector2 direcao = posicaoAlvo - posicaoAtual;
-            direcao = direcao.normalized;
+            Vector2 posicaoAlvo = this.alvo.position;
+            posicaoAlvo.y = 0;
+            Vector2 posicaoAtual = this.transform.position;
+            posicaoAtual.y = 0;
 
-
-            this.rigidBody2D.velocity = (this.velocidadeMovimento * direcao);
-
-            if (this.rigidBody2D.velocity.x > 0)
+            float distancia = Vector2.Distance(posicaoAtual, posicaoAlvo);
+            if (distancia >= this.distanciaMinima)
             {
-                this.spriteRender.flipX = true;
+                Vector2 direcao = posicaoAlvo - posicaoAtual;
+                direcao = direcao.normalized;
+
+
+                this.rigidBody2D.velocity = (this.velocidadeMovimento * direcao);
+                inimigo2Anim.InimigoII("WalkingInimigo2");
+                Debug.Log("andando");
+
+
+                if (this.rigidBody2D.velocity.x > 0)
+                {
+                    this.spriteRender.flipX = true;
+                }
+                else if (this.rigidBody2D.velocity.x < 0)
+                {
+                    this.spriteRender.flipX = false;
+                }
             }
-            else if (this.rigidBody2D.velocity.x < 0)
+        }
+
+        if (inimigoIII)
+        {
+            Vector2 posicaoAlvo = this.alvo.position;
+            posicaoAlvo.y = 0;
+            Vector2 posicaoAtual = this.transform.position;
+            posicaoAtual.y = 0;
+
+            float distancia = Vector2.Distance(posicaoAtual, posicaoAlvo);
+            if (distancia >= this.distanciaMinima)
             {
-                this.spriteRender.flipX = false;
+                Vector2 direcao = posicaoAlvo - posicaoAtual;
+                direcao = direcao.normalized;
+
+
+                this.rigidBody2D.velocity = (this.velocidadeMovimento * direcao);
+
+
+                if (this.rigidBody2D.velocity.x > 0)
+                {
+                    this.spriteRender.flipX = true;
+                }
+                else if (this.rigidBody2D.velocity.x < 0)
+                {
+                    this.spriteRender.flipX = false;
+                }
             }
-            
         }
         else
         {
-            PararMovimentacao();
+            //PararMovimentacao();
+            //inimigo2Anim.InimigoII("IdleInimigo2");
         }
     }
 
@@ -150,7 +203,9 @@ public class InimigoUm : MonoBehaviour
 
     private void PararMovimentacao()
     {
+        inimigo2Anim.InimigoII("IdleInimigo2");
         this.rigidBody2D.velocity = Vector2.zero;
+        
     }
 
     public void ReceberDano()
@@ -171,8 +226,21 @@ public class InimigoUm : MonoBehaviour
         UpdateBarraVida();
         if (vida <= 0)
         {
-            GameObject.Destroy(this.gameObject);
-            dropScript.Drop();
+            
+            if (vida <= 0 && chefao)
+            {
+                GameObject.Destroy(this.gameObject);
+                dropScript.Drop();
+                SceneManager.LoadScene("Vitoria");
+            }
+
+            if (vida <= 0 && inimigoII)
+            {
+                inimigo2Anim.InimigoII("DeadInimigo2");
+                GameObject.Destroy(this.gameObject);
+                dropScript.Drop();
+                SceneManager.LoadScene("Vitoria");
+            }
         }
     }
 
@@ -180,6 +248,10 @@ public class InimigoUm : MonoBehaviour
     {
         Personagem personagem = alvo.GetComponent<Personagem>();
         personagem.ReceberDano();
+        if (inimigoII)
+        {
+            inimigo2Anim.InimigoII("AttackInimigo2");
+        }
         
         
     }
@@ -215,8 +287,6 @@ public class InimigoUm : MonoBehaviour
                 Instantiate(flecha, pontoFlecha.position, rotation);
                 atualTempTiros = tempoTiros;
                 
-               
-
         }
     }
 
