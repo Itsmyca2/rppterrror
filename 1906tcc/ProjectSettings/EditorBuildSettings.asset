@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Palacio.unity
     guid: c5ae5941945708843931c954a06c07f4
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: ade6d844a02057e448c657bbd732adc8
   m_configObjects: {}

@@ -70,7 +70,7 @@ public class Personagem : MonoBehaviour
     void Start()
     {
 
-        textoMoeda = GameObject.FindWithTag("textoMoeda").GetComponent<TextMeshProUGUI>();
+       
 
         colidindoPersonagem = false;
         playerAnim = GetComponent<Animator>();
@@ -88,7 +88,7 @@ public class Personagem : MonoBehaviour
         barraVidaJogador.maxValue = vidaJogador;
         barraVidaJogador.value = vidaJogador;
         
-        
+        textoMoeda = GameObject.FindWithTag("textoMoeda").GetComponent<TextMeshProUGUI>();
         
 
     }
@@ -276,6 +276,7 @@ public class Personagem : MonoBehaviour
             playerAnim.SetBool("Death", true);
             this.vidaJogador = 0;
             Time.timeScale = 0.0f;
+            SceneManager.LoadScene("Game Over");
             
         }
     }

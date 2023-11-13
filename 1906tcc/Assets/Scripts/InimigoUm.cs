@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -84,6 +85,10 @@ public class InimigoUm : MonoBehaviour
         if (chefao)
         {
             PoderChefao();
+            if (vida <= 0)
+            {
+                SceneManager.LoadScene("Vitoria");
+            }
         }
         
         
