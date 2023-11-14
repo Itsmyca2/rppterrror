@@ -64,6 +64,10 @@ public class Personagem : MonoBehaviour
     
     public int danoParaDar;
 
+    private AudioSource caminhadaSom;
+    private AudioSource puloSom;
+    private AudioSource ataqueEspadaSom;
+
 
 
     // Start is called before the first frame update
@@ -94,6 +98,14 @@ public class Personagem : MonoBehaviour
 
     }
 
+    private void Awake()
+    {
+        caminhadaSom = GetComponent<AudioSource>();
+        puloSom = GetComponent<AudioSource>();
+        ataqueEspadaSom = GetComponent<AudioSource>();
+
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -101,6 +113,18 @@ public class Personagem : MonoBehaviour
         Jump();
         Attack();
         AtirandoMagia();
+
+        if (Input.GetButtonDown("Horizontal") && taNoChao)
+        {
+            caminhadaSom.Play();
+        }
+
+        if (Input.GetButtonDown("Jump") && taNoChao)
+        {
+            puloSom.Play();
+        }
+        
+        
     }
 
     private void FixedUpdate()
@@ -110,7 +134,9 @@ public class Personagem : MonoBehaviour
 
     void Move()
     {
+        
         float horizontalMovimento = Input.GetAxisRaw("Horizontal");
+        
         rig.velocity = new Vector2(horizontalMovimento * velocidade, rig.velocity.y);
 
         if (rig.velocity.magnitude > velocidadeMax)
@@ -122,21 +148,23 @@ public class Personagem : MonoBehaviour
         if (horizontalMovimento > 0)
         {
             playerAnim.SetBool("Walk", true );
-           //playerAnim.SetBool("Attack", false);
+            //playerAnim.SetBool("Attack", false);
             sprite.flipX = false;
-             attackCheck.localPosition = new Vector2 (attackCheckX, attackCheck.localPosition.y);
+            attackCheck.localPosition = new Vector2 (attackCheckX, attackCheck.localPosition.y);
         }
 
         else if (horizontalMovimento < 0)
         {
             playerAnim.SetBool("Walk", true );
-           //playerAnim.SetBool("Attack", false);
+            //playerAnim.SetBool("Attack", false);
             sprite.flipX = true;
             attackCheck.localPosition = new Vector2 (-attackCheckX, attackCheck.localPosition.y);
         }
         else
         {
+            caminhadaSom.Stop();
             playerAnim.SetBool("Walk", false);
+            
         }
 
     }
@@ -150,6 +178,7 @@ public class Personagem : MonoBehaviour
             lastJumpTime = Time.time;
             rig.AddForce(new Vector2(0f, forcaPulo), ForceMode2D.Impulse);
         }
+        
     }
 
     void AtirandoMagia()
@@ -235,6 +264,7 @@ public class Personagem : MonoBehaviour
                 playerAnim.SetTrigger("Attack");
                 tempoAtaque = 0.2f;
                 PlayerAttack();
+                ataqueEspadaSom.Play();
             }
         }
        
@@ -305,7 +335,7 @@ public class Personagem : MonoBehaviour
      public void ColetarMoedas()
      {
          moedasColetadas ++;
-        // textoMoeda.text = moedasColetadas.ToString();
+         textoMoeda.text = moedasColetadas.ToString();
         // PlayerPrefs.SetInt("QuantidadeMoedas", moedasColetadas);
      }
      

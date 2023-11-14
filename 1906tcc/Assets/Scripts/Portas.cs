@@ -16,6 +16,9 @@ public class Portas : MonoBehaviour
     public Animator animator;
 
     public float contador;
+
+    private AudioSource somPalacio;
+    private AudioSource somFloresta;
     
     public Transform localdeidaSala;
     // Start is called before the first frame update
@@ -28,6 +31,12 @@ public class Portas : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void Awake()
+    {
+        somPalacio = GetComponent<AudioSource>();
+        somFloresta = GetComponent<AudioSource>();
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -50,6 +59,8 @@ public class Portas : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && portaPalacio)
         {
             player.transform.position = localPalacio.transform.position;
+            somFloresta.Stop();
+            somPalacio.Play();
         }
     }
 }

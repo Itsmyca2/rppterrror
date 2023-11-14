@@ -48,8 +48,11 @@ public class InimigoUm : MonoBehaviour
 
      public DropItens dropScript;
 
+     public AniEnemyI inimigo1anim;
      public AniEnemyII inimigo2Anim;
+     public AniEnemyIII inimigo3Anim;
 
+     public bool inimigoI;
      public bool inimigoII;
      public bool inimigoIII;
      
@@ -105,6 +108,19 @@ public class InimigoUm : MonoBehaviour
                 PararMovimentacao();
             }
         }
+
+        if (inimigoIII)
+        {
+            if (this.alvo != null) //se tem um alvo
+            {
+                MovimentoInimigo();
+                VerficarProximoAtaque();
+            }
+            else // se nao tiver alvo
+            {
+                PararMovimentacao();
+            }
+        }
         
         
     }
@@ -133,7 +149,7 @@ public class InimigoUm : MonoBehaviour
 
                 this.rigidBody2D.velocity = (this.velocidadeMovimento * direcao);
                 inimigo2Anim.InimigoII("WalkingInimigo2");
-                Debug.Log("andando");
+               // Debug.Log("andando");
 
 
                 if (this.rigidBody2D.velocity.x > 0)
@@ -162,6 +178,7 @@ public class InimigoUm : MonoBehaviour
 
 
                 this.rigidBody2D.velocity = (this.velocidadeMovimento * direcao);
+                inimigo3Anim.InimigoIII("WalkInimigo3");
 
 
                 if (this.rigidBody2D.velocity.x > 0)
@@ -203,8 +220,18 @@ public class InimigoUm : MonoBehaviour
 
     private void PararMovimentacao()
     {
-        inimigo2Anim.InimigoII("IdleInimigo2");
-        this.rigidBody2D.velocity = Vector2.zero;
+        
+        if (inimigoII)
+        {
+            inimigo2Anim.InimigoII("IdleInimigo2");
+            this.rigidBody2D.velocity = Vector2.zero;
+        }
+
+        if (inimigoIII)
+        {
+            inimigo3Anim.InimigoIII("IdleInimigo3");
+            this.rigidBody2D.velocity = Vector2.zero;
+        }
         
     }
 
@@ -226,20 +253,32 @@ public class InimigoUm : MonoBehaviour
         UpdateBarraVida();
         if (vida <= 0)
         {
-            
-            if (vida <= 0 && chefao)
+            if (vida <= 0 && arqueiro)
             {
                 GameObject.Destroy(this.gameObject);
                 dropScript.Drop();
+            }
+            if (vida <= 0 && chefao)
+            {
                 SceneManager.LoadScene("Vitoria");
+                GameObject.Destroy(this.gameObject);
+                dropScript.Drop();
+                
             }
 
             if (vida <= 0 && inimigoII)
             {
                 inimigo2Anim.InimigoII("DeadInimigo2");
-                GameObject.Destroy(this.gameObject);
+                GameObject.Destroy(this.gameObject,0.5f);
                 dropScript.Drop();
-                SceneManager.LoadScene("Vitoria");
+               
+            }
+
+            if (vida <= 0 && inimigoIII)
+            {
+                inimigo3Anim.InimigoIII("DeadInimigo3");
+                GameObject.Destroy(this.gameObject, 0.5f);
+                dropScript.Drop();
             }
         }
     }
@@ -251,6 +290,11 @@ public class InimigoUm : MonoBehaviour
         if (inimigoII)
         {
             inimigo2Anim.InimigoII("AttackInimigo2");
+        }
+
+        if (inimigoIII)
+        {
+            inimigo3Anim.InimigoIII("AttackInimigo3");
         }
         
         

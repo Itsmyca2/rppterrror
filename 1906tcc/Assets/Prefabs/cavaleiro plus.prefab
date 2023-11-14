@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6630812604303124535}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.26, y: 2.292, z: 0}
-  m_LocalScale: {x: 1.2092957, y: 0.8446243, z: 1.564218}
+  m_LocalPosition: {x: -5.02, y: 2.55, z: 0}
+  m_LocalScale: {x: 1.7425952, y: 1.2171036, z: 2.254038}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6630812604752678547}
@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6630812604752678572}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.55, y: 1.01, z: 0}
+  m_LocalPosition: {x: 0.28, y: 1.49, z: 0}
   m_LocalScale: {x: 0.41844678, y: 0.41844678, z: 0.41844678}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -131,6 +131,8 @@ GameObject:
   - component: {fileID: 6630812605580592308}
   - component: {fileID: 6630812605580592309}
   - component: {fileID: 956572584}
+  - component: {fileID: 6158163728198107624}
+  - component: {fileID: 26992817}
   m_Layer: 7
   m_Name: cavaleiro plus
   m_TagString: Inimigo
@@ -147,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 6630812605580592310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.044, y: -3.202, z: 0}
-  m_LocalScale: {x: 0.45470536, y: 0.45470536, z: 0.45470536}
+  m_LocalScale: {x: 0.30565804, y: 0.30565804, z: 0.30565804}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6630812604752678547}
@@ -195,7 +197,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ccd3de4895faccb48ab463e6a2d9a178, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c5e60c12fd0db0142ae9b963b1295c3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -219,8 +221,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3186728, y: -0.2364351}
-  m_Size: {x: 2.3781765, y: 3.2047489}
+  m_Offset: {x: 0.76223034, y: -0.5360902}
+  m_Size: {x: 3.0845, y: 4.411551}
   m_Direction: 0
 --- !u!50 &6630812605580592308
 Rigidbody2D:
@@ -268,7 +270,7 @@ MonoBehaviour:
   barraDeVida: {fileID: 6630812604303124534}
   barradeVidaObject: {fileID: 6630812604752678572}
   distanciaMaxAtaque: 1
-  intervaloAtaque: 3
+  intervaloAtaque: 1
   flecha: {fileID: 0}
   pontoFlecha: {fileID: 0}
   arqueiro: 0
@@ -278,6 +280,12 @@ MonoBehaviour:
   pontoPoder: {fileID: 0}
   poder: {fileID: 0}
   dropScript: {fileID: 0}
+  inimigo1anim: {fileID: 0}
+  inimigo2Anim: {fileID: 0}
+  inimigo3Anim: {fileID: 26992817}
+  inimigoI: 0
+  inimigoII: 0
+  inimigoIII: 1
 --- !u!114 &956572584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,10 +298,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353798d342b6acc4f996c101c9e0dd82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 5886929357781195641, guid: f4869dcbc3398f341be2b8538a659ff1, type: 3}
+  item: {fileID: 7818454427303893630, guid: 78a0ff7127191474fa805ce43f9628c0, type: 3}
   itemDropPorcentagem: 50
   itemMinDrop: 2
   itemMaxDrop: 5
+--- !u!95 &6158163728198107624
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630812605580592310}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 594e3c51515ed574a997a74fdfc1cdda, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &26992817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630812605580592310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af85e56c33f2f214b909cd68399d0d04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inimigoIIIAnimator: {fileID: 6158163728198107624}
+  animName: 
 --- !u!1 &6630812605881756194
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,8 +361,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6630812605881756194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.259997, y: 2.292, z: 0}
-  m_LocalScale: {x: 1.2092957, y: 0.8446243, z: 1.564218}
+  m_LocalPosition: {x: -5.019981, y: 2.5499988, z: 0}
+  m_LocalScale: {x: 1.7425952, y: 1.2171036, z: 2.254038}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6630812604752678547}
