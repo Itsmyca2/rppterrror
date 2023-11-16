@@ -60,8 +60,8 @@ public class Personagem : MonoBehaviour
     private TextMeshProUGUI textoMoeda;
     
     private AudioSource caminhadaSom;
-    private AudioSource puloSom;
-    private AudioSource ataqueEspadaSom;
+    public AudioSource puloSom;
+    public AudioSource ataqueEspadaSom;
 
 
 
@@ -93,8 +93,8 @@ public class Personagem : MonoBehaviour
     private void Awake()
     {
         caminhadaSom = GetComponent<AudioSource>();
-        puloSom = GetComponent<AudioSource>();
-        ataqueEspadaSom = GetComponent<AudioSource>();
+        //puloSom = GetComponent<AudioSource>();
+        //ataqueEspadaSom = GetComponent<AudioSource>();
 
     }
 
@@ -110,13 +110,6 @@ public class Personagem : MonoBehaviour
         {
             caminhadaSom.Play();
         }
-
-        if (Input.GetButtonDown("Jump") && taNoChao)
-        {
-            puloSom.Play();
-        }
-        
-        
     }
 
     private void FixedUpdate()
@@ -124,6 +117,17 @@ public class Personagem : MonoBehaviour
         Move();
     }
 
+    public void SomPulo()
+    {
+        Debug.Log("Som de pulo");
+        puloSom.Play();
+    }
+    
+    public void SomAttack()
+    {
+        Debug.Log("Som de ataque");
+        ataqueEspadaSom.Play();
+    }
     void Move()
     {
         
@@ -165,6 +169,7 @@ public class Personagem : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && taNoChao)
         {
+            
             playerAnim.SetBool("Attack", false);
             rig.gravityScale = 1f;
             lastJumpTime = Time.time;
