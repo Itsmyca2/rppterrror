@@ -9,19 +9,19 @@ using TMPro;
 
 public class Personagem : MonoBehaviour
 {
-    //private GameObject lugarataque = GameObject.FindWithTag("lugarataque");
-
     public float velocidadeMax;
     public float velocidade;
     public float forcaPulo;
     private Rigidbody2D rig;
     private SpriteRenderer sprite;
     private Animator playerAnim;
+    [Header("Lugar do Ataque")] 
+    public Transform attackCheck;
+    private float attackCheckX;
     
     
     public int vidaJogador;
     public Slider barraVidaJogador;
-
     public Slider barraManaJogador;
     public int quantidadeAtualMagia;
     public int quantidadeMaxMagia;
@@ -33,15 +33,12 @@ public class Personagem : MonoBehaviour
     public Transform detectaChao;
     public LayerMask oQueEChao;
    
-
-    [Header("Lugar do Ataque")] 
-    public Transform attackCheck;
-    private float attackCheckX;
-
+    
     public float raioAtaque;
     public LayerMask layerEnemy;
     float tempoProximoAtaque;
     private float tempoAtaque;
+    
     public bool porcaodefesaativa = false;
     public bool tacompocaoforca = false;
 
@@ -62,8 +59,6 @@ public class Personagem : MonoBehaviour
 
     private TextMeshProUGUI textoMoeda;
     
-    public int danoParaDar;
-
     private AudioSource caminhadaSom;
     private AudioSource puloSom;
     private AudioSource ataqueEspadaSom;
@@ -82,9 +77,6 @@ public class Personagem : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         
         attackCheckX = attackCheck.localPosition.x;
-
-        //moedasColetadas = PlayerPrefs.GetInt("QuantidadeMoedas");
-
         quantidadeAtualMagia = quantidadeMaxMagia;
         barraManaJogador.maxValue = quantidadeAtualMagia;
         barraManaJogador.value = quantidadeAtualMagia;
@@ -210,9 +202,6 @@ public class Personagem : MonoBehaviour
 
     void DetectarChao()
     {
-        //playerAnim.SetBool("Jump", false);
-        //taNoChao = Physics2D.OverlapCircle(detectaChao.position, 0.2f, oQueEChao);
-        
         playerAnim.SetFloat("VelocityY", rig.velocity.y);
         
         bool taOnde = Physics2D.BoxCast(detectaChao.position, boxSize,0, Vector2.down,castDistance,oQueEChao);

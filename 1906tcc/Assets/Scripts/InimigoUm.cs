@@ -9,9 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class InimigoUm : MonoBehaviour
 {
-    //public float inimigoVelocidade;
-
-    #region Movimentação Jogador
+    #region Movimentação Inimigos;
 
     [SerializeField] private float velocidadeMovimento;
     [SerializeField] private float distanciaMinima;
@@ -19,14 +17,17 @@ public class InimigoUm : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRender;
 
     #endregion
-
      public Transform alvo;
      [SerializeField] private float raioVisao;
      [SerializeField] private LayerMask playerLayer;
+     public bool inimigoII;
+     public bool inimigoIII;
+     public AniEnemyII inimigo2Anim;
+     public AniEnemyIII inimigo3Anim;
      
      public int vida;
      public Transform barraDeVida;        //barra verde
-     public GameObject barradeVidaObject; // objeto pai das barras
+    
      
      private Vector3 escalaBarraVida; //tamanho da barra
      private float barraVidaPercentual;
@@ -49,12 +50,10 @@ public class InimigoUm : MonoBehaviour
      public DropItens dropScript;
 
      public AniEnemyI inimigo1anim;
-     public AniEnemyII inimigo2Anim;
-     public AniEnemyIII inimigo3Anim;
+    
 
      public bool inimigoI;
-     public bool inimigoII;
-     public bool inimigoIII;
+     public GameObject barradeVidaObject; // objeto pai das barras
      
 
 
