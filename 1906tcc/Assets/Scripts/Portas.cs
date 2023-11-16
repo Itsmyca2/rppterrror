@@ -35,7 +35,6 @@ public class Portas : MonoBehaviour
 
     private void Awake()
     {
-        somPalacio = GetComponent<AudioSource>();
         somFloresta = GetComponent<AudioSource>();
     }
 
@@ -59,8 +58,15 @@ public class Portas : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && portaPalacio)
         {
             player.transform.position = localPalacio.transform.position;
+            
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player") && portaPalacio)
+        {
             somFloresta.Stop();
-            somPalacio.Play();
         }
     }
 }
