@@ -21,7 +21,7 @@ public class PowerUps : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 0.4f);
         }
     }
 }
