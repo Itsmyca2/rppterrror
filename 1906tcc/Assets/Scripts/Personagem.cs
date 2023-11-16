@@ -23,8 +23,8 @@ public class Personagem : MonoBehaviour
     public int vidaJogador;
     public Slider barraVidaJogador;
     public Slider barraManaJogador;
-    public int quantidadeAtualMagia;
-    public int quantidadeMaxMagia;
+    public float quantidadeAtualMagia;
+    public float quantidadeMaxMagia;
     public GameObject magia;
     public Transform pontoMagia;
     
@@ -83,7 +83,7 @@ public class Personagem : MonoBehaviour
 
         barraVidaJogador.maxValue = vidaJogador;
         barraVidaJogador.value = vidaJogador;
-        textoMoeda = GameObject.FindWithTag("textoMoeda").GetComponent<TextMeshProUGUI>();
+       // textoMoeda = GameObject.FindWithTag("textoMoeda").GetComponent<TextMeshProUGUI>();
         
         
         
@@ -183,6 +183,8 @@ public class Personagem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             
+            
+            
             if (quantidadeAtualMagia > 1)
             {
                 MagiaJogador magiaJogador = Instantiate(magia, pontoMagia.position, pontoMagia.rotation = Quaternion.Euler(0, 0, 0)).GetComponent<MagiaJogador>();
@@ -198,6 +200,10 @@ public class Personagem : MonoBehaviour
 
                 quantidadeAtualMagia -= 1;
                 barraManaJogador.value = quantidadeAtualMagia;
+                quantidadeAtualMagia--;
+                barraManaJogador.value = quantidadeAtualMagia;
+               // moedasColetadas -= 1;
+               // textoMoeda.text = moedasColetadas.ToString();
                 
 
             }
@@ -328,9 +334,12 @@ public class Personagem : MonoBehaviour
     
      public void ColetarMoedas()
      {
-         moedasColetadas ++;
-         textoMoeda.text = moedasColetadas.ToString();
-        // PlayerPrefs.SetInt("QuantidadeMoedas", moedasColetadas);
+         //moedasColetadas ++;
+         //textoMoeda.text = moedasColetadas.ToString();
+         quantidadeAtualMagia++;
+         barraManaJogador.value = quantidadeAtualMagia;
+         
+         // PlayerPrefs.SetInt("QuantidadeMoedas", moedasColetadas);
      }
      
      private void OnCollisionEnter2D(Collision2D other)
