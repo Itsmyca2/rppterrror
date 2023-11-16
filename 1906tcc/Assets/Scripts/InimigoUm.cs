@@ -70,20 +70,9 @@ public class InimigoUm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //MovimentoInimigo();
+       
         ProcurarJogador();
-        /*if (!arqueiro)
-        {
-            if (this.alvo != null) //se tem um alvo
-            {
-                MovimentoInimigo();
-                VerficarProximoAtaque();
-            }
-            else // se nao tiver alvo
-            {
-                PararMovimentacao();
-            }
-        }*/
+       
 
         if (arqueiro)
         {
@@ -120,6 +109,21 @@ public class InimigoUm : MonoBehaviour
                 PararMovimentacao();
             }
         }
+        
+         //MovimentoInimigo();
+        
+         /*if (!arqueiro)
+                {
+                    if (this.alvo != null) //se tem um alvo
+                    {
+                        MovimentoInimigo();
+                        VerficarProximoAtaque();
+                    }
+                    else // se nao tiver alvo
+                    {
+                        PararMovimentacao();
+                    }
+                }*/
         
         
     }
