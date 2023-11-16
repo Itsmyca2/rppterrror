@@ -8,17 +8,7 @@ public class MusicaPorta : MonoBehaviour
 {
     private AudioSource somPalacio;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     private void Awake()
     {
         somPalacio = GetComponent<AudioSource>();
