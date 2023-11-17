@@ -180,7 +180,7 @@ public class Personagem : MonoBehaviour
         {
             
             
-            
+            playerAnim.SetBool("AttackMagia", true);
             if (quantidadeAtualMagia > 1)
             {
                 poderSom.Play();
@@ -200,6 +200,11 @@ public class Personagem : MonoBehaviour
                 
             }
             
+        }
+
+        else
+        {
+            playerAnim.SetBool("AttackMagia", false);
         }
     }
 
