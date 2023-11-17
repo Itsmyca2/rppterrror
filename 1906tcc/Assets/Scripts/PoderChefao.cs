@@ -5,25 +5,23 @@ using UnityEngine;
 public class PoderChefao : MonoBehaviour
 {
     public float velocidadePoder;
+    public int tempoDestruir;
+    public bool left;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Destroy(this.gameObject, tempoDestruir);
     }
 
     // Update is called once per frame
     void Update()
     {
-        TirosMovimentos();
+        if (left) MagiaDireita();
+        else MagiaEsquerda();
     }
-
-    private void TirosMovimentos()
-    {
-        transform.Translate(Vector3.left * velocidadePoder* Time.deltaTime);
-    }
-
+    
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -34,6 +32,18 @@ public class PoderChefao : MonoBehaviour
         }
         
 
+    }
+    public void MagiaDireita()
+    {
+        //magiaSprite.flipX = false;
+        transform.Translate(Vector3.right * velocidadePoder * Time.deltaTime);
+        
+    }
+
+    public void MagiaEsquerda()
+    {
+        //magiaSprite.flipX = true;
+        transform.Translate(Vector3.left * velocidadePoder * Time.deltaTime);
     }
     
     

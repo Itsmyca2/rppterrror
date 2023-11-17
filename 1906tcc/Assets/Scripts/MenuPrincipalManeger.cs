@@ -8,7 +8,7 @@ public class MenuPrincipalManeger : MonoBehaviour
     [SerializeField] private string nomePrimeiraCena;
     public void Jogar()
     {
-        SceneManager.LoadScene("DialogoInicial");
+        SceneManager.LoadScene("CutSceneInicial");
     }
 
     public void Sair()

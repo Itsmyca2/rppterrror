@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2202646488244013747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.26, y: 0.45, z: 0}
+  m_LocalPosition: {x: -1.76, y: -0.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,6 +44,8 @@ GameObject:
   - component: {fileID: 2202646488450846639}
   - component: {fileID: 2202646488450846624}
   - component: {fileID: 2202646488450846625}
+  - component: {fileID: 6867027838054379181}
+  - component: {fileID: 1292623773}
   m_Layer: 7
   m_Name: 'arqueiro '
   m_TagString: Inimigo
@@ -109,7 +111,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: b094fd9c03f839e4f878e378e74958a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: edd6b6016491c804c8f1e4e9d0eae53a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -133,8 +135,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.870215, y: 0}
-  m_Size: {x: 2.4721558, y: 6.0399995}
+  m_Offset: {x: 0.09167705, y: -0.44650945}
+  m_Size: {x: 2.1057718, y: 5.8339143}
   m_Direction: 0
 --- !u!50 &2202646488450846624
 Rigidbody2D:
@@ -178,9 +180,12 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
+  inimigoII: 0
+  inimigoIII: 0
+  inimigo2Anim: {fileID: 0}
+  inimigo3Anim: {fileID: 0}
   vida: 10
   barraDeVida: {fileID: 2202646488773112959}
-  barradeVidaObject: {fileID: 2202646488567105446}
   distanciaMaxAtaque: 0
   intervaloAtaque: 0
   flecha: {fileID: 5577987078131813886, guid: a0601b94ced3a844f9143bd538f0e86b, type: 3}
@@ -192,6 +197,43 @@ MonoBehaviour:
   pontoPoder: {fileID: 0}
   poder: {fileID: 0}
   dropScript: {fileID: 0}
+  inimigo1anim: {fileID: 1292623773}
+  inimigoI: 1
+  barradeVidaObject: {fileID: 2202646488567105446}
+--- !u!95 &6867027838054379181
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2202646488450846626}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a49089fb42e98584596b737ca5748caa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1292623773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2202646488450846626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c476b4449e445214bbee5a1a0aed0473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inimigoIAnimator: {fileID: 6867027838054379181}
+  animName: 
 --- !u!1 &2202646488567105446
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2202646488567105446}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.40740067, y: 1.0406866, z: 0}
+  m_LocalPosition: {x: -0.35, y: 0.79, z: 0}
   m_LocalScale: {x: 0.7674858, y: 0.7674858, z: 0.7674858}
   m_ConstrainProportionsScale: 0
   m_Children:

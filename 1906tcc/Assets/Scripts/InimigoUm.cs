@@ -2,15 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class InimigoUm : MonoBehaviour
 {
-    //public float inimigoVelocidade;
-
-    #region Movimentação Jogador
+    #region Movimentação Inimigos;
 
     [SerializeField] private float velocidadeMovimento;
     [SerializeField] private float distanciaMinima;
@@ -18,14 +17,21 @@ public class InimigoUm : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRender;
 
     #endregion
-
      public Transform alvo;
      [SerializeField] private float raioVisao;
      [SerializeField] private LayerMask playerLayer;
      
+     public bool inimigoI;
+     public bool inimigoII;
+     public bool inimigoIII;
+     public AniEnemyI inimigo1anim;
+     public AniEnemyII inimigo2Anim;
+     public AniEnemyIII inimigo3Anim;
+     public AniEnemyBoss inimigo4Anim;
+     
      public int vida;
      public Transform barraDeVida;        //barra verde
-     public GameObject barradeVidaObject; // objeto pai das barras
+    
      
      private Vector3 escalaBarraVida; //tamanho da barra
      private float barraVidaPercentual;
@@ -37,7 +43,6 @@ public class InimigoUm : MonoBehaviour
      
      public GameObject flecha;
      public Transform pontoFlecha;
-     public bool arqueiro;
      public float tempoTiros;
      public float atualTempTiros;
 
@@ -46,6 +51,8 @@ public class InimigoUm : MonoBehaviour
      public GameObject poder;
 
      public DropItens dropScript;
+     
+     public GameObject barradeVidaObject; // objeto pai das barras
      
 
 
@@ -62,9 +69,41 @@ public class InimigoUm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //MovimentoInimigo();
+       
         ProcurarJogador();
-        if (!arqueiro)
+       
+
+        if (inimigoI)
+        {
+            TiroArqueiro();
+            if (this.alvo != null) //se tem um alvo
+            {
+                MovimentoInimigo();
+                VerficarProximoAtaque();
+            }
+            else // se nao tiver alvo
+            {
+                PararMovimentacao();
+            }
+            
+
+        }
+
+        if (chefao)
+        {
+            PoderChefao();
+            if (this.alvo != null) //se tem um alvo
+            {
+                MovimentoInimigo();
+                VerficarProximoAtaque();
+            }
+            else // se nao tiver alvo
+            {
+                PararMovimentacao();
+            }
+        }
+
+        if (inimigoII)
         {
             if (this.alvo != null) //se tem um alvo
             {
@@ -77,21 +116,20 @@ public class InimigoUm : MonoBehaviour
             }
         }
 
-        if (arqueiro)
+        if (inimigoIII)
         {
-            TiroArqueiro();
-        }
-
-        if (chefao)
-        {
-            PoderChefao();
-            if (vida <= 0)
+            if (this.alvo != null) //se tem um alvo
             {
-                SceneManager.LoadScene("Vitoria");
+                MovimentoInimigo();
+                VerficarProximoAtaque();
+            }
+            else // se nao tiver alvo
+            {
+                PararMovimentacao();
             }
         }
-        
-        
+
+
     }
 
     void UpdateBarraVida()
@@ -101,35 +139,98 @@ public class InimigoUm : MonoBehaviour
     }
     void MovimentoInimigo()
     {
-        //transform.Translate(Vector3.left * inimigoVelocidade * Time.deltaTime);
 
-        Vector2 posicaoAlvo = this.alvo.position;
-        posicaoAlvo.y = 0;
-        Vector2 posicaoAtual = this.transform.position;
-        posicaoAtual.y = 0;
-
-        float distancia = Vector2.Distance(posicaoAtual, posicaoAlvo);
-        if (distancia >= this.distanciaMinima)
+        if (inimigoII)
         {
-            Vector2 direcao = posicaoAlvo - posicaoAtual;
-            direcao = direcao.normalized;
+            Vector2 posicaoAlvo = this.alvo.position;
+            posicaoAlvo.y = 0;
+            Vector2 posicaoAtual = this.transform.position;
+            posicaoAtual.y = 0;
 
-
-            this.rigidBody2D.velocity = (this.velocidadeMovimento * direcao);
-
-            if (this.rigidBody2D.velocity.x > 0)
+            float distancia = Vector2.Distance(posicaoAtual, posicaoAlvo);
+            if (distancia >= this.distanciaMinima)
             {
-                this.spriteRender.flipX = true;
+                Vector2 direcao = posicaoAlvo - posicaoAtual;
+                direcao = direcao.normalized;
+
+
+                this.rigidBody2D.velocity = (this.velocidadeMovimento * direcao);
+                inimigo2Anim.InimigoII("WalkingInimigo2");
+               // Debug.Log("andando");
+
+
+                if (this.rigidBody2D.velocity.x > 0)
+                {
+                    this.spriteRender.flipX = true;
+                }
+                else if (this.rigidBody2D.velocity.x < 0)
+                {
+                    this.spriteRender.flipX = false;
+                }
             }
-            else if (this.rigidBody2D.velocity.x < 0)
+        }
+
+        if (inimigoIII)
+        {
+            Vector2 posicaoAlvo = this.alvo.position;
+            posicaoAlvo.y = 0;
+            Vector2 posicaoAtual = this.transform.position;
+            posicaoAtual.y = 0;
+
+            float distancia = Vector2.Distance(posicaoAtual, posicaoAlvo);
+            if (distancia >= this.distanciaMinima)
             {
-                this.spriteRender.flipX = false;
+                Vector2 direcao = posicaoAlvo - posicaoAtual;
+                direcao = direcao.normalized;
+
+
+                this.rigidBody2D.velocity = (this.velocidadeMovimento * direcao);
+                inimigo3Anim.InimigoIII("WalkInimigo3");
+
+
+                if (this.rigidBody2D.velocity.x > 0)
+                {
+                    this.spriteRender.flipX = true;
+                }
+                else if (this.rigidBody2D.velocity.x < 0)
+                {
+                    this.spriteRender.flipX = false;
+                }
             }
             
         }
+
+        if (chefao)
+        {
+            Vector2 posicaoAlvo = this.alvo.position;
+            posicaoAlvo.y = 0;
+            Vector2 posicaoAtual = this.transform.position;
+            posicaoAtual.y = 0;
+
+            float distancia = Vector2.Distance(posicaoAtual, posicaoAlvo);
+            if (distancia >= this.distanciaMinima)
+            {
+                Vector2 direcao = posicaoAlvo - posicaoAtual;
+                direcao = direcao.normalized;
+
+
+                this.rigidBody2D.velocity = (this.velocidadeMovimento * direcao);
+                inimigo4Anim.InimigoTio("WalkChefao");
+                
+                if (this.rigidBody2D.velocity.x > 0)
+                {
+                    this.spriteRender.flipX = true;
+                }
+                else if (this.rigidBody2D.velocity.x < 0)
+                {
+                    this.spriteRender.flipX = false;
+                }
+            }
+        }
         else
         {
-            PararMovimentacao();
+            //PararMovimentacao();
+            //inimigo2Anim.InimigoII("IdleInimigo2");
         }
     }
 
@@ -155,18 +256,37 @@ public class InimigoUm : MonoBehaviour
 
     private void PararMovimentacao()
     {
-        this.rigidBody2D.velocity = Vector2.zero;
+        if (inimigoI)
+        {
+            inimigo2Anim.InimigoII("IdleInimigo1");
+            this.rigidBody2D.velocity = Vector2.zero;
+        }
+        if (inimigoII)
+        {
+            inimigo2Anim.InimigoII("IdleInimigo2");
+            this.rigidBody2D.velocity = Vector2.zero;
+        }
+
+        if (inimigoIII)
+        {
+            inimigo3Anim.InimigoIII("IdleInimigo3");
+            this.rigidBody2D.velocity = Vector2.zero;
+        }
+
+        if (chefao)
+        {
+            inimigo4Anim.InimigoTio("IdleChefao");
+            this.rigidBody2D.velocity = Vector2.zero;
+        }
+        
+        
+        
     }
 
     public void ReceberDano()
     {
         vida--;
-        bool pocaoforcaativada = GameObject.FindGameObjectWithTag("Player").GetComponent<Personagem>().tacompocaoforca;
-
-        if (pocaoforcaativada)
-        {
-            vida--;
-        }
+        
 
         if (gameObject.CompareTag("magia"))
         {
@@ -176,8 +296,33 @@ public class InimigoUm : MonoBehaviour
         UpdateBarraVida();
         if (vida <= 0)
         {
-            GameObject.Destroy(this.gameObject);
-            dropScript.Drop();
+            if (vida <= 0 && inimigoI)
+            {
+                inimigo1anim.InimigoI("DeadInimigo1");
+                GameObject.Destroy(this.gameObject, 0.5f);
+            }
+            if (vida <= 0 && chefao)
+            {
+                SceneManager.LoadScene("Vitoria");
+                GameObject.Destroy(this.gameObject);
+                dropScript.Drop();
+                
+            }
+            
+            if (vida <= 0 && inimigoII)
+            {
+                inimigo2Anim.InimigoII("DeadInimigo2");
+                GameObject.Destroy(this.gameObject,0.5f);
+                dropScript.Drop();
+               
+            }
+
+            if (vida <= 0 && inimigoIII)
+            {
+                inimigo3Anim.InimigoIII("DeadInimigo3");
+                GameObject.Destroy(this.gameObject, 0.5f);
+                dropScript.Drop();
+            }
         }
     }
 
@@ -185,6 +330,17 @@ public class InimigoUm : MonoBehaviour
     {
         Personagem personagem = alvo.GetComponent<Personagem>();
         personagem.ReceberDano();
+
+        
+        if (inimigoII)
+        {
+            inimigo2Anim.InimigoII("AttackInimigo2");
+        }
+
+        if (inimigoIII)
+        {
+            inimigo3Anim.InimigoIII("AttackInimigo3");
+        }
         
         
     }
@@ -216,13 +372,13 @@ public class InimigoUm : MonoBehaviour
         if (atualTempTiros <= 0)
         {
             
-                Quaternion rotation = Quaternion.Euler(0, 0, 0);
-                Instantiate(flecha, pontoFlecha.position, rotation);
-                atualTempTiros = tempoTiros;
-                
-               
-
+            Quaternion rotation = Quaternion.Euler(0, 0, 0);
+            Instantiate(flecha, pontoFlecha.position, rotation);
+            inimigo1anim.InimigoI("AttackInimigo1");
+            atualTempTiros = tempoTiros;
+            
         }
+        
     }
 
     public void PoderChefao()
@@ -230,8 +386,17 @@ public class InimigoUm : MonoBehaviour
         atualTempTiros -= Time.deltaTime;
         if (atualTempTiros <= 0)
         {
-            Quaternion rotation = Quaternion.Euler(0, 0, 0);
-            Instantiate(poder, pontoPoder.position, rotation);
+            inimigo4Anim.InimigoTio("AttackChefao");
+            PoderChefao magiaChefao = Instantiate(poder, pontoPoder.position, pontoPoder.rotation = Quaternion.Euler(0, 0, 0)).GetComponent<PoderChefao>();
+            magiaChefao.left = this.spriteRender.flipX;
+            if (magiaChefao.left)
+            {
+                magiaChefao.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                magiaChefao.GetComponent<SpriteRenderer>().flipX = false;
+            }
             atualTempTiros = tempoTiros;
         }
 

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TelaInicial.unity
     guid: 240549fd0712cfd478058a903478405a
   - enabled: 1
+    path: Assets/Scenes/CutSceneInicial.unity
+    guid: 59cf9231be507084ca0fafa282af1be5
+  - enabled: 1
     path: Assets/Scenes/DialogoInicial.unity
     guid: 1728f48a3b863ec439c45ed82c11950e
   - enabled: 1
@@ -20,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Over.unity
     guid: ade6d844a02057e448c657bbd732adc8
+  - enabled: 1
+    path: Assets/Scenes/Vitoria.unity
+    guid: f2424c901dfa88b439d95a8540a658f5
+  - enabled: 0
+    path: Assets/Scenes/Pause.unity
+    guid: 421a21c6efc421a418ee5da5d1073300
   m_configObjects: {}

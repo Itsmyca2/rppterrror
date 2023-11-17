@@ -31,9 +31,9 @@ TagManager:
   - dead25262728
   - porcaomagia
   - dead29
-  - Lugar
-  - confiner
   - Enemy
+  - deadfloresta
+  - flecha
   layers:
   - Default
   - TransparentFX

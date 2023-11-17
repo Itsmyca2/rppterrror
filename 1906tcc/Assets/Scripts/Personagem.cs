@@ -9,22 +9,22 @@ using TMPro;
 
 public class Personagem : MonoBehaviour
 {
-    //private GameObject lugarataque = GameObject.FindWithTag("lugarataque");
-
     public float velocidadeMax;
     public float velocidade;
     public float forcaPulo;
     private Rigidbody2D rig;
     private SpriteRenderer sprite;
     private Animator playerAnim;
+    [Header("Lugar do Ataque")] 
+    public Transform attackCheck;
+    private float attackCheckX;
     
     
     public int vidaJogador;
     public Slider barraVidaJogador;
-
     public Slider barraManaJogador;
-    public int quantidadeAtualMagia;
-    public int quantidadeMaxMagia;
+    public float quantidadeAtualMagia;
+    public float quantidadeMaxMagia;
     public GameObject magia;
     public Transform pontoMagia;
     
@@ -33,22 +33,13 @@ public class Personagem : MonoBehaviour
     public Transform detectaChao;
     public LayerMask oQueEChao;
    
-
-    [Header("Lugar do Ataque")] 
-    public Transform attackCheck;
-    private float attackCheckX;
-
+    
     public float raioAtaque;
     public LayerMask layerEnemy;
     float tempoProximoAtaque;
     private float tempoAtaque;
-    public bool porcaodefesaativa = false;
-    public bool tacompocaoforca = false;
-
     public GameObject ponteI;
     public GameObject ponteII;
-
-    public int moedasColetadas;
 
     public Vector2 boxSize;
     public float castDistance;
@@ -62,7 +53,10 @@ public class Personagem : MonoBehaviour
 
     private TextMeshProUGUI textoMoeda;
     
-    public int danoParaDar;
+    private AudioSource caminhadaSom;
+    public AudioSource poderSom;
+    public AudioSource puloSom;
+    public AudioSource ataqueEspadaSom;
 
 
 
@@ -70,7 +64,7 @@ public class Personagem : MonoBehaviour
     void Start()
     {
 
-       
+        
 
         colidindoPersonagem = false;
         playerAnim = GetComponent<Animator>();
@@ -78,18 +72,25 @@ public class Personagem : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         
         attackCheckX = attackCheck.localPosition.x;
-
-        //moedasColetadas = PlayerPrefs.GetInt("QuantidadeMoedas");
-
         quantidadeAtualMagia = quantidadeMaxMagia;
         barraManaJogador.maxValue = quantidadeAtualMagia;
         barraManaJogador.value = quantidadeAtualMagia;
 
         barraVidaJogador.maxValue = vidaJogador;
         barraVidaJogador.value = vidaJogador;
+       // textoMoeda = GameObject.FindWithTag("textoMoeda").GetComponent<TextMeshProUGUI>();
         
-        textoMoeda = GameObject.FindWithTag("textoMoeda").GetComponent<TextMeshProUGUI>();
         
+        
+
+    }
+
+    private void Awake()
+    {
+        caminhadaSom = GetComponent<AudioSource>();
+        //poderSom = GetComponent<AudioSource>();
+        //puloSom = GetComponent<AudioSource>();
+        //ataqueEspadaSom = GetComponent<AudioSource>();
 
     }
 
@@ -100,6 +101,11 @@ public class Personagem : MonoBehaviour
         Jump();
         Attack();
         AtirandoMagia();
+
+        if (Input.GetButtonDown("Horizontal") && taNoChao)
+        {
+            //caminhadaSom.Play();
+        }
     }
 
     private void FixedUpdate()
@@ -107,9 +113,22 @@ public class Personagem : MonoBehaviour
         Move();
     }
 
+    public void SomPulo()
+    {
+        Debug.Log("Som de pulo");
+        puloSom.Play();
+    }
+    
+    public void SomAttack()
+    {
+        Debug.Log("Som de ataque");
+        ataqueEspadaSom.Play();
+    }
     void Move()
     {
+        
         float horizontalMovimento = Input.GetAxisRaw("Horizontal");
+        
         rig.velocity = new Vector2(horizontalMovimento * velocidade, rig.velocity.y);
 
         if (rig.velocity.magnitude > velocidadeMax)
@@ -121,21 +140,23 @@ public class Personagem : MonoBehaviour
         if (horizontalMovimento > 0)
         {
             playerAnim.SetBool("Walk", true );
-           //playerAnim.SetBool("Attack", false);
+            //playerAnim.SetBool("Attack", false);
             sprite.flipX = false;
-             attackCheck.localPosition = new Vector2 (attackCheckX, attackCheck.localPosition.y);
+            attackCheck.localPosition = new Vector2 (attackCheckX, attackCheck.localPosition.y);
         }
 
         else if (horizontalMovimento < 0)
         {
             playerAnim.SetBool("Walk", true );
-           //playerAnim.SetBool("Attack", false);
+            //playerAnim.SetBool("Attack", false);
             sprite.flipX = true;
             attackCheck.localPosition = new Vector2 (-attackCheckX, attackCheck.localPosition.y);
         }
         else
         {
+            caminhadaSom.Stop();
             playerAnim.SetBool("Walk", false);
+            
         }
 
     }
@@ -144,20 +165,25 @@ public class Personagem : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && taNoChao)
         {
+            
             playerAnim.SetBool("Attack", false);
             rig.gravityScale = 1f;
             lastJumpTime = Time.time;
             rig.AddForce(new Vector2(0f, forcaPulo), ForceMode2D.Impulse);
         }
+        
     }
 
     void AtirandoMagia()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            
+            StartCoroutine(AtacarMagia());
+            /*
+            playerAnim.SetBool("AttackMagia", true);
             if (quantidadeAtualMagia > 1)
             {
+                poderSom.Play();
                 MagiaJogador magiaJogador = Instantiate(magia, pontoMagia.position, pontoMagia.rotation = Quaternion.Euler(0, 0, 0)).GetComponent<MagiaJogador>();
                 magiaJogador.left = sprite.flipX;
                 if (magiaJogador.left)
@@ -171,18 +197,49 @@ public class Personagem : MonoBehaviour
 
                 quantidadeAtualMagia -= 1;
                 barraManaJogador.value = quantidadeAtualMagia;
-                
-
             }
-            
+*/
         }
+/*
+        else
+        {
+            playerAnim.SetBool("AttackMagia", false);
+        }
+        */
     }
 
+    IEnumerator AtacarMagia()
+    {
+        playerAnim.SetBool("AttackMagia", true);
+        if (quantidadeAtualMagia > 1)
+        {
+            poderSom.Play();
+            MagiaJogador magiaJogador = Instantiate(magia, pontoMagia.position, pontoMagia.rotation = Quaternion.Euler(0, 0, 0)).GetComponent<MagiaJogador>();
+            magiaJogador.left = sprite.flipX;
+            if (magiaJogador.left)
+            {
+                magiaJogador.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                magiaJogador.GetComponent<SpriteRenderer>().flipX = false;
+            }
+
+            quantidadeAtualMagia -= 1;
+            barraManaJogador.value = quantidadeAtualMagia;
+        }
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("teste");
+        playerAnim.SetBool("AttackMagia", false);
+        
+    }
+   /* public void PararAtk()
+    {
+        playerAnim.SetBool("AttackMagia", false);
+    }
+*/
     void DetectarChao()
     {
-        //playerAnim.SetBool("Jump", false);
-        //taNoChao = Physics2D.OverlapCircle(detectaChao.position, 0.2f, oQueEChao);
-        
         playerAnim.SetFloat("VelocityY", rig.velocity.y);
         
         bool taOnde = Physics2D.BoxCast(detectaChao.position, boxSize,0, Vector2.down,castDistance,oQueEChao);
@@ -234,6 +291,7 @@ public class Personagem : MonoBehaviour
                 playerAnim.SetTrigger("Attack");
                 tempoAtaque = 0.2f;
                 PlayerAttack();
+                ataqueEspadaSom.Play();
             }
         }
        
@@ -253,18 +311,11 @@ public class Personagem : MonoBehaviour
      public void ReceberDano()
     {
         
-        if (porcaodefesaativa)
-        {
-            vidaJogador--;
-        }
-        else
-        {
-            vidaJogador -= 5;
-        }
-
+        vidaJogador--;
+            
         if (recebendoDanoChefao)
         {
-            vidaJogador -= 20;
+            vidaJogador -= 5;
         }
 
         barraVidaJogador.value = vidaJogador;
@@ -275,9 +326,9 @@ public class Personagem : MonoBehaviour
         {
             playerAnim.SetBool("Death", true);
             this.vidaJogador = 0;
-            Time.timeScale = 0.0f;
+            //Time.timeScale = 0.0f;
             SceneManager.LoadScene("Game Over");
-            
+
         }
     }
 
@@ -303,9 +354,9 @@ public class Personagem : MonoBehaviour
     
      public void ColetarMoedas()
      {
-         moedasColetadas ++;
-         textoMoeda.text = moedasColetadas.ToString();
-        // PlayerPrefs.SetInt("QuantidadeMoedas", moedasColetadas);
+         quantidadeAtualMagia++;
+         barraManaJogador.value = quantidadeAtualMagia;
+         
      }
      
      private void OnCollisionEnter2D(Collision2D other)
@@ -320,26 +371,7 @@ public class Personagem : MonoBehaviour
          {
              barraVidaJogador.maxValue = vidaJogador;
          }
-
-         if (other.gameObject.CompareTag("pocaoforca"))
-         {
-             tacompocaoforca = true;
-         }
-
-         if (other.gameObject.CompareTag("pocaodefesa"))
-         {
-             porcaodefesaativa = true;
-         }
-
-         if (other.gameObject.CompareTag("porcaomagia"))
-         {
-             quantidadeAtualMagia = quantidadeMaxMagia;
-             barraManaJogador.maxValue = quantidadeAtualMagia;
-             barraManaJogador.value = quantidadeAtualMagia;
-
-             
-         }
-
+         
          if (other.gameObject.CompareTag("plataforma"))
          {
              forcaPulo = 10;

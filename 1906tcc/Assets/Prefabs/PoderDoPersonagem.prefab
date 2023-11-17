@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707e0065066d2ee498d08d4510059f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadeMagia: 6
+  velocidadeMagia: 8
   magia: {fileID: 2087850038986166215}
   tempoDestruir: 3
   magiaSprite: {fileID: 998517391958176844}

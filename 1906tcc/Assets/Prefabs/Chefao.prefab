@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222232759491812556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.259997, y: 2.292, z: 0}
-  m_LocalScale: {x: 1.2092957, y: 0.8446243, z: 1.564218}
+  m_LocalPosition: {x: -2.3499632, y: 2.0399992, z: 0}
+  m_LocalScale: {x: 0.9275299, y: 0.64782685, z: 1.1997553}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2501066458414424853}
@@ -108,8 +108,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860100270333996017}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.69, y: 3.28, z: 0}
-  m_LocalScale: {x: 0.36285496, y: 0.36285496, z: 0.36285496}
+  m_LocalPosition: {x: -0.56, y: 1.61, z: 0}
+  m_LocalScale: {x: 0.63325447, y: 0.63325447, z: 0.63325447}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7834676647979990383}
@@ -142,8 +142,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2590532631012866591}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.26, y: 2.292, z: 0}
-  m_LocalScale: {x: 1.2092957, y: 0.8446243, z: 1.564218}
+  m_LocalPosition: {x: -2.35, y: 2.04, z: 0}
+  m_LocalScale: {x: 0.9275299, y: 0.64782685, z: 1.1997553}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2501066458414424853}
@@ -279,7 +279,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 22c52065207e2944db7a2549734fb59d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e2ed2f63b091ea8498f287102f4470c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -303,8 +303,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.99720585, y: -0.11080138}
-  m_Size: {x: 3.8997958, y: 7.4454117}
+  m_Offset: {x: 0.014044969, y: 0.13194542}
+  m_Size: {x: 1.8772936, y: 5.030265}
   m_Direction: 0
 --- !u!50 &6802507319509994231
 Rigidbody2D:
@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadeMovimento: 3
-  distanciaMinima: 0
+  distanciaMinima: 1
   rigidBody2D: {fileID: 6802507319509994231}
   spriteRender: {fileID: 6802507319509994229}
   alvo: {fileID: 0}
@@ -348,20 +348,25 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  vida: 0
+  inimigoI: 0
+  inimigoII: 0
+  inimigoIII: 0
+  inimigo1anim: {fileID: 0}
+  inimigo2Anim: {fileID: 0}
+  inimigo3Anim: {fileID: 0}
+  vida: 60
   barraDeVida: {fileID: 7834676647979990383}
-  barradeVidaObject: {fileID: 860100270333996017}
   distanciaMaxAtaque: 0
   intervaloAtaque: 0
   flecha: {fileID: 0}
   pontoFlecha: {fileID: 0}
-  arqueiro: 0
-  tempoTiros: 9000
+  tempoTiros: 2
   atualTempTiros: 0
   chefao: 1
   pontoPoder: {fileID: 6802507320653948729}
   poder: {fileID: 4299184386158751118, guid: 0f3b5e90d972efe46b265c90d69e939a, type: 3}
   dropScript: {fileID: 0}
+  barradeVidaObject: {fileID: 860100270333996017}
 --- !u!1 &6802507320653948730
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6802507320653948730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.7, y: -0.31, z: 0}
+  m_LocalPosition: {x: -1.45, y: -1.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2398090413882094253}
   m_Layer: 0
   m_Name: flecha
-  m_TagString: Untagged
+  m_TagString: flecha
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: b092cd5220bae894fbee1aaa2aa8b5c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -125,6 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadeTiro: 7
-  darDano: 0
   flecha: {fileID: 5577987078131813886}
-  tempoDestruir: 2
+  tempoDestruir: 1
