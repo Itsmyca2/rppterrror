@@ -38,14 +38,8 @@ public class Personagem : MonoBehaviour
     public LayerMask layerEnemy;
     float tempoProximoAtaque;
     private float tempoAtaque;
-    
-    public bool porcaodefesaativa = false;
-    public bool tacompocaoforca = false;
-
     public GameObject ponteI;
     public GameObject ponteII;
-
-    public int moedasColetadas;
 
     public Vector2 boxSize;
     public float castDistance;

@@ -383,8 +383,16 @@ public class InimigoUm : MonoBehaviour
         atualTempTiros -= Time.deltaTime;
         if (atualTempTiros <= 0)
         {
-            Quaternion rotation = Quaternion.Euler(0, 0, 0);
-            Instantiate(poder, pontoPoder.position, rotation);
+            PoderChefao magiaChefao = Instantiate(poder, pontoPoder.position, pontoPoder.rotation = Quaternion.Euler(0, 0, 0)).GetComponent<PoderChefao>();
+            magiaChefao.left = this.spriteRender.flipX;
+            if (magiaChefao.left)
+            {
+                magiaChefao.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                magiaChefao.GetComponent<SpriteRenderer>().flipX = false;
+            }
             atualTempTiros = tempoTiros;
         }
 
