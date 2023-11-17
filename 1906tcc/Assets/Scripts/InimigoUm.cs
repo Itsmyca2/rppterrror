@@ -215,6 +215,7 @@ public class InimigoUm : MonoBehaviour
 
 
                 this.rigidBody2D.velocity = (this.velocidadeMovimento * direcao);
+                inimigo4Anim.InimigoTio("WalkChefao");
                 
                 if (this.rigidBody2D.velocity.x > 0)
                 {

@@ -249,7 +249,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Aperte Espa\xE7o para continuar."
+  m_text: Aperte Espaco para continuar.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ba6307db5a09564bbad5b2d383db4d1, type: 2}
   m_sharedMaterial: {fileID: -3987917720974685436, guid: 9ba6307db5a09564bbad5b2d383db4d1, type: 2}

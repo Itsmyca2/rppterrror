@@ -178,8 +178,8 @@ public class Personagem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            
-            
+            StartCoroutine(AtacarMagia());
+            /*
             playerAnim.SetBool("AttackMagia", true);
             if (quantidadeAtualMagia > 1)
             {
@@ -197,17 +197,47 @@ public class Personagem : MonoBehaviour
 
                 quantidadeAtualMagia -= 1;
                 barraManaJogador.value = quantidadeAtualMagia;
-                
             }
-            
+*/
         }
-
+/*
         else
         {
             playerAnim.SetBool("AttackMagia", false);
         }
+        */
     }
 
+    IEnumerator AtacarMagia()
+    {
+        playerAnim.SetBool("AttackMagia", true);
+        if (quantidadeAtualMagia > 1)
+        {
+            poderSom.Play();
+            MagiaJogador magiaJogador = Instantiate(magia, pontoMagia.position, pontoMagia.rotation = Quaternion.Euler(0, 0, 0)).GetComponent<MagiaJogador>();
+            magiaJogador.left = sprite.flipX;
+            if (magiaJogador.left)
+            {
+                magiaJogador.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                magiaJogador.GetComponent<SpriteRenderer>().flipX = false;
+            }
+
+            quantidadeAtualMagia -= 1;
+            barraManaJogador.value = quantidadeAtualMagia;
+        }
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("teste");
+        playerAnim.SetBool("AttackMagia", false);
+        
+    }
+   /* public void PararAtk()
+    {
+        playerAnim.SetBool("AttackMagia", false);
+    }
+*/
     void DetectarChao()
     {
         playerAnim.SetFloat("VelocityY", rig.velocity.y);
