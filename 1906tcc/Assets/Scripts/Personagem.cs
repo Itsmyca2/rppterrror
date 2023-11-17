@@ -200,11 +200,7 @@ public class Personagem : MonoBehaviour
 
                 quantidadeAtualMagia -= 1;
                 barraManaJogador.value = quantidadeAtualMagia;
-                quantidadeAtualMagia--;
-                barraManaJogador.value = quantidadeAtualMagia;
-               // moedasColetadas -= 1;
-               // textoMoeda.text = moedasColetadas.ToString();
-                
+
 
             }
             
@@ -284,18 +280,11 @@ public class Personagem : MonoBehaviour
      public void ReceberDano()
     {
         
-        if (porcaodefesaativa)
-        {
-            vidaJogador--;
-        }
-        else
-        {
-            vidaJogador -= 5;
-        }
-
+        vidaJogador--;
+            
         if (recebendoDanoChefao)
         {
-            vidaJogador -= 20;
+            vidaJogador -= 5;
         }
 
         barraVidaJogador.value = vidaJogador;
@@ -334,12 +323,9 @@ public class Personagem : MonoBehaviour
     
      public void ColetarMoedas()
      {
-         //moedasColetadas ++;
-         //textoMoeda.text = moedasColetadas.ToString();
          quantidadeAtualMagia++;
          barraManaJogador.value = quantidadeAtualMagia;
          
-         // PlayerPrefs.SetInt("QuantidadeMoedas", moedasColetadas);
      }
      
      private void OnCollisionEnter2D(Collision2D other)
@@ -354,26 +340,7 @@ public class Personagem : MonoBehaviour
          {
              barraVidaJogador.maxValue = vidaJogador;
          }
-
-         if (other.gameObject.CompareTag("pocaoforca"))
-         {
-             tacompocaoforca = true;
-         }
-
-         if (other.gameObject.CompareTag("pocaodefesa"))
-         {
-             porcaodefesaativa = true;
-         }
-
-         if (other.gameObject.CompareTag("porcaomagia"))
-         {
-             quantidadeAtualMagia = quantidadeMaxMagia;
-             barraManaJogador.maxValue = quantidadeAtualMagia;
-             barraManaJogador.value = quantidadeAtualMagia;
-
-             
-         }
-
+         
          if (other.gameObject.CompareTag("plataforma"))
          {
              forcaPulo = 10;

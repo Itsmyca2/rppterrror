@@ -241,12 +241,7 @@ public class InimigoUm : MonoBehaviour
     public void ReceberDano()
     {
         vida--;
-        bool pocaoforcaativada = GameObject.FindGameObjectWithTag("Player").GetComponent<Personagem>().tacompocaoforca;
-
-        if (pocaoforcaativada)
-        {
-            vida--;
-        }
+        
 
         if (gameObject.CompareTag("magia"))
         {
