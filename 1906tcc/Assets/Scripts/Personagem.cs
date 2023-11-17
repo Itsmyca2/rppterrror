@@ -60,6 +60,7 @@ public class Personagem : MonoBehaviour
     private TextMeshProUGUI textoMoeda;
     
     private AudioSource caminhadaSom;
+    public AudioSource poderSom;
     public AudioSource puloSom;
     public AudioSource ataqueEspadaSom;
 
@@ -93,6 +94,7 @@ public class Personagem : MonoBehaviour
     private void Awake()
     {
         caminhadaSom = GetComponent<AudioSource>();
+        //poderSom = GetComponent<AudioSource>();
         //puloSom = GetComponent<AudioSource>();
         //ataqueEspadaSom = GetComponent<AudioSource>();
 
@@ -108,7 +110,7 @@ public class Personagem : MonoBehaviour
 
         if (Input.GetButtonDown("Horizontal") && taNoChao)
         {
-            caminhadaSom.Play();
+            //caminhadaSom.Play();
         }
     }
 
@@ -187,6 +189,7 @@ public class Personagem : MonoBehaviour
             
             if (quantidadeAtualMagia > 1)
             {
+                poderSom.Play();
                 MagiaJogador magiaJogador = Instantiate(magia, pontoMagia.position, pontoMagia.rotation = Quaternion.Euler(0, 0, 0)).GetComponent<MagiaJogador>();
                 magiaJogador.left = sprite.flipX;
                 if (magiaJogador.left)
@@ -200,8 +203,7 @@ public class Personagem : MonoBehaviour
 
                 quantidadeAtualMagia -= 1;
                 barraManaJogador.value = quantidadeAtualMagia;
-
-
+                
             }
             
         }
