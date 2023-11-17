@@ -27,6 +27,7 @@ public class InimigoUm : MonoBehaviour
      public AniEnemyI inimigo1anim;
      public AniEnemyII inimigo2Anim;
      public AniEnemyIII inimigo3Anim;
+     public AniEnemyBoss inimigo4Anim;
      
      public int vida;
      public Transform barraDeVida;        //barra verde
@@ -273,6 +274,7 @@ public class InimigoUm : MonoBehaviour
 
         if (chefao)
         {
+            inimigo4Anim.InimigoTio("IdleChefao");
             this.rigidBody2D.velocity = Vector2.zero;
         }
         
@@ -383,6 +385,7 @@ public class InimigoUm : MonoBehaviour
         atualTempTiros -= Time.deltaTime;
         if (atualTempTiros <= 0)
         {
+            inimigo4Anim.InimigoTio("AttackChefao");
             PoderChefao magiaChefao = Instantiate(poder, pontoPoder.position, pontoPoder.rotation = Quaternion.Euler(0, 0, 0)).GetComponent<PoderChefao>();
             magiaChefao.left = this.spriteRender.flipX;
             if (magiaChefao.left)
