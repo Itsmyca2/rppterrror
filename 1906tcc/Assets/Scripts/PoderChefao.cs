@@ -5,13 +5,14 @@ using UnityEngine;
 public class PoderChefao : MonoBehaviour
 {
     public float velocidadePoder;
+    public int tempoDestruir;
     public bool left;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Destroy(this.gameObject, tempoDestruir);
     }
 
     // Update is called once per frame
