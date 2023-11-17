@@ -20,8 +20,11 @@ public class InimigoUm : MonoBehaviour
      public Transform alvo;
      [SerializeField] private float raioVisao;
      [SerializeField] private LayerMask playerLayer;
+     
+     public bool inimigoI;
      public bool inimigoII;
      public bool inimigoIII;
+     public AniEnemyI inimigo1anim;
      public AniEnemyII inimigo2Anim;
      public AniEnemyIII inimigo3Anim;
      
@@ -39,7 +42,6 @@ public class InimigoUm : MonoBehaviour
      
      public GameObject flecha;
      public Transform pontoFlecha;
-     public bool arqueiro;
      public float tempoTiros;
      public float atualTempTiros;
 
@@ -48,11 +50,7 @@ public class InimigoUm : MonoBehaviour
      public GameObject poder;
 
      public DropItens dropScript;
-
-     public AniEnemyI inimigo1anim;
-    
-
-     public bool inimigoI;
+     
      public GameObject barradeVidaObject; // objeto pai das barras
      
 
@@ -74,9 +72,20 @@ public class InimigoUm : MonoBehaviour
         ProcurarJogador();
        
 
-        if (arqueiro)
+        if (inimigoI)
         {
             TiroArqueiro();
+            if (this.alvo != null) //se tem um alvo
+            {
+                MovimentoInimigo();
+                VerficarProximoAtaque();
+            }
+            else // se nao tiver alvo
+            {
+                PararMovimentacao();
+            }
+            
+
         }
 
         if (chefao)
@@ -223,7 +232,11 @@ public class InimigoUm : MonoBehaviour
 
     private void PararMovimentacao()
     {
-        
+        if (inimigoI)
+        {
+            inimigo2Anim.InimigoII("IdleInimigo1");
+            this.rigidBody2D.velocity = Vector2.zero;
+        }
         if (inimigoII)
         {
             inimigo2Anim.InimigoII("IdleInimigo2");
@@ -251,10 +264,10 @@ public class InimigoUm : MonoBehaviour
         UpdateBarraVida();
         if (vida <= 0)
         {
-            if (vida <= 0 && arqueiro)
+            if (vida <= 0 && inimigoI)
             {
-                GameObject.Destroy(this.gameObject);
-                dropScript.Drop();
+                inimigo1anim.InimigoI("DeadInimigo1");
+                GameObject.Destroy(this.gameObject, 0.5f);
             }
             if (vida <= 0 && chefao)
             {
@@ -263,7 +276,7 @@ public class InimigoUm : MonoBehaviour
                 dropScript.Drop();
                 
             }
-
+            
             if (vida <= 0 && inimigoII)
             {
                 inimigo2Anim.InimigoII("DeadInimigo2");
@@ -285,6 +298,8 @@ public class InimigoUm : MonoBehaviour
     {
         Personagem personagem = alvo.GetComponent<Personagem>();
         personagem.ReceberDano();
+
+        
         if (inimigoII)
         {
             inimigo2Anim.InimigoII("AttackInimigo2");
@@ -325,11 +340,13 @@ public class InimigoUm : MonoBehaviour
         if (atualTempTiros <= 0)
         {
             
-                Quaternion rotation = Quaternion.Euler(0, 0, 0);
-                Instantiate(flecha, pontoFlecha.position, rotation);
-                atualTempTiros = tempoTiros;
-                
+            Quaternion rotation = Quaternion.Euler(0, 0, 0);
+            Instantiate(flecha, pontoFlecha.position, rotation);
+            inimigo1anim.InimigoI("AttackInimigo1");
+            atualTempTiros = tempoTiros;
+            
         }
+        
     }
 
     public void PoderChefao()

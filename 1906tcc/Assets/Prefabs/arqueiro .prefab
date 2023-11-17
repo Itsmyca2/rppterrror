@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 2202646488450846624}
   - component: {fileID: 2202646488450846625}
   - component: {fileID: 6867027838054379181}
+  - component: {fileID: 1292623773}
   m_Layer: 7
   m_Name: 'arqueiro '
   m_TagString: Inimigo
@@ -179,9 +180,12 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
+  inimigoII: 0
+  inimigoIII: 0
+  inimigo2Anim: {fileID: 0}
+  inimigo3Anim: {fileID: 0}
   vida: 10
   barraDeVida: {fileID: 2202646488773112959}
-  barradeVidaObject: {fileID: 2202646488567105446}
   distanciaMaxAtaque: 0
   intervaloAtaque: 0
   flecha: {fileID: 5577987078131813886, guid: a0601b94ced3a844f9143bd538f0e86b, type: 3}
@@ -193,12 +197,9 @@ MonoBehaviour:
   pontoPoder: {fileID: 0}
   poder: {fileID: 0}
   dropScript: {fileID: 0}
-  inimigo1anim: {fileID: 0}
-  inimigo2Anim: {fileID: 0}
-  inimigo3Anim: {fileID: 0}
-  inimigoI: 0
-  inimigoII: 0
-  inimigoIII: 0
+  inimigo1anim: {fileID: 1292623773}
+  inimigoI: 1
+  barradeVidaObject: {fileID: 2202646488567105446}
 --- !u!95 &6867027838054379181
 Animator:
   serializedVersion: 4
@@ -219,6 +220,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1292623773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2202646488450846626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c476b4449e445214bbee5a1a0aed0473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inimigoIAnimator: {fileID: 6867027838054379181}
+  animName: 
 --- !u!1 &2202646488567105446
 GameObject:
   m_ObjectHideFlags: 0
