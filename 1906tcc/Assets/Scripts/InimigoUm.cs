@@ -91,6 +91,15 @@ public class InimigoUm : MonoBehaviour
         if (chefao)
         {
             PoderChefao();
+            if (this.alvo != null) //se tem um alvo
+            {
+                MovimentoInimigo();
+                VerficarProximoAtaque();
+            }
+            else // se nao tiver alvo
+            {
+                PararMovimentacao();
+            }
         }
 
         if (inimigoII)
@@ -118,23 +127,8 @@ public class InimigoUm : MonoBehaviour
                 PararMovimentacao();
             }
         }
-        
-         //MovimentoInimigo();
-        
-         /*if (!arqueiro)
-                {
-                    if (this.alvo != null) //se tem um alvo
-                    {
-                        MovimentoInimigo();
-                        VerficarProximoAtaque();
-                    }
-                    else // se nao tiver alvo
-                    {
-                        PararMovimentacao();
-                    }
-                }*/
-        
-        
+
+
     }
 
     void UpdateBarraVida()
@@ -202,6 +196,34 @@ public class InimigoUm : MonoBehaviour
                     this.spriteRender.flipX = false;
                 }
             }
+            
+        }
+
+        if (chefao)
+        {
+            Vector2 posicaoAlvo = this.alvo.position;
+            posicaoAlvo.y = 0;
+            Vector2 posicaoAtual = this.transform.position;
+            posicaoAtual.y = 0;
+
+            float distancia = Vector2.Distance(posicaoAtual, posicaoAlvo);
+            if (distancia >= this.distanciaMinima)
+            {
+                Vector2 direcao = posicaoAlvo - posicaoAtual;
+                direcao = direcao.normalized;
+
+
+                this.rigidBody2D.velocity = (this.velocidadeMovimento * direcao);
+                
+                if (this.rigidBody2D.velocity.x > 0)
+                {
+                    this.spriteRender.flipX = true;
+                }
+                else if (this.rigidBody2D.velocity.x < 0)
+                {
+                    this.spriteRender.flipX = false;
+                }
+            }
         }
         else
         {
@@ -248,6 +270,13 @@ public class InimigoUm : MonoBehaviour
             inimigo3Anim.InimigoIII("IdleInimigo3");
             this.rigidBody2D.velocity = Vector2.zero;
         }
+
+        if (chefao)
+        {
+            this.rigidBody2D.velocity = Vector2.zero;
+        }
+        
+        
         
     }
 

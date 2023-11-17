@@ -27,25 +27,7 @@ public class MagiaJogador : MonoBehaviour
         else MagiaDireita();
 
     }
-
-   /* private void TirosMovimentos()
-    {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            flipPersonagem.flipX = false;
-            transform.Translate(Vector3.right * velocidadeMagia * Time.deltaTime);
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            flipPersonagem.flipX = true;
-            transform.Translate(Vector3.left * velocidadeMagia * Time.deltaTime);
-        }
-        
-        
-    }
-   */
-
+    
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Inimigo"))
