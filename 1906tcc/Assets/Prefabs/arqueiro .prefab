@@ -180,25 +180,25 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
+  inimigoI: 1
   inimigoII: 0
   inimigoIII: 0
+  inimigo1anim: {fileID: 1292623773}
   inimigo2Anim: {fileID: 0}
   inimigo3Anim: {fileID: 0}
+  inimigo4Anim: {fileID: 0}
   vida: 10
   barraDeVida: {fileID: 2202646488773112959}
   distanciaMaxAtaque: 0
   intervaloAtaque: 0
   flecha: {fileID: 5577987078131813886, guid: a0601b94ced3a844f9143bd538f0e86b, type: 3}
   pontoFlecha: {fileID: 2202646488244013746}
-  arqueiro: 1
-  tempoTiros: 5
+  tempoTiros: 3
   atualTempTiros: 0
   chefao: 0
   pontoPoder: {fileID: 0}
   poder: {fileID: 0}
   dropScript: {fileID: 0}
-  inimigo1anim: {fileID: 1292623773}
-  inimigoI: 1
   barradeVidaObject: {fileID: 2202646488567105446}
 --- !u!95 &6867027838054379181
 Animator:

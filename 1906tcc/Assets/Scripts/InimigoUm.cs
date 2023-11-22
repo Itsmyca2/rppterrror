@@ -63,6 +63,7 @@ public class InimigoUm : MonoBehaviour
         barraVidaPercentual = escalaBarraVida.x / vida;
         this.tempoEsperaProxAtaque = this.intervaloAtaque;
         dropScript = GetComponent<DropItens>();
+        rigidBody2D = GetComponent<Rigidbody2D>();
 
     }
 
@@ -258,7 +259,7 @@ public class InimigoUm : MonoBehaviour
     {
         if (inimigoI)
         {
-            inimigo2Anim.InimigoII("IdleInimigo1");
+            inimigo1anim.InimigoI("IdleInimigo1");
             this.rigidBody2D.velocity = Vector2.zero;
         }
         if (inimigoII)

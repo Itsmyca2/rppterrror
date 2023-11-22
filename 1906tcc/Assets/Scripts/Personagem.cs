@@ -111,6 +111,8 @@ public class Personagem : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+
+       // transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 
     public void SomPulo()

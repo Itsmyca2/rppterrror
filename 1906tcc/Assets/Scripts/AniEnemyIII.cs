@@ -21,7 +21,7 @@ public class AniEnemyIII : MonoBehaviour
 
     public void InimigoIII(string animationNome)
     {
-        if(animName== animationNome) return;
+        //if(animName== animationNome) return;
         
         animName = animationNome;
         inimigoIIIAnimator.Play(animationNome);
